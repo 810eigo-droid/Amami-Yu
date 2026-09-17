@@ -46,7 +46,7 @@
     <p><b>対象ページ</b>　固定ページ「今の悩みの根っこがわかる「家族の役割 紐解きコーチング」」</p>
     <p><b>URL</b>　https://amamiyuh.com/family-role-coaching/</p>
     <p><b>編集場所</b>　WordPress 管理画面 > 固定ページ > 対象ページ > コード欄</p>
-    <p><b>所要時間の目安</b>　文章の修正 5分／画像の差し替え 10分</p>
+    <p><b>所要時間の目安</b>　文章の修正 5分／画像の差し替え 3分（同名アップロード）</p>
   </div>
   <p class="footer-note">作成日：2026年9月17日　　このマニュアルは、LPの作りが変わらない限りそのままお使いいただけます。</p>
 </div>
@@ -55,7 +55,7 @@
 <ol class="toc">
   <li>LPの仕組みを知る（最初に1回だけお読みください）</li>
   <li>文章を変更する</li>
-  <li>画像を差し替える</li>
+  <li>画像を差し替える（方法A：同名で上げ直す／方法B：URLを書き換える）</li>
   <li>お客様の声を追加・変更する</li>
   <li>申込フォームのURL・料金・人数を変更する</li>
   <li>変更前後の確認と、元に戻す方法</li>
@@ -119,19 +119,37 @@
   <tr><th>トップ画像（FV）</th><td>PC用 1672×941、スマホ用 1006×1564。文字入り画像はデザイン担当にご依頼ください。</td></tr>
   <tr><th>ファイル形式</th><td>JPG・PNG・WebP のいずれか。1枚 300KB 以下が目安です。</td></tr>
 </table>
-<h3>手順</h3>
-<div class="step"><div class="n">1</div><div class="b">左メニュー <b>メディア &gt; 新規追加</b> で、新しい画像をアップロードします。</div></div>
+<h3>方法A：同じ名前でメディアに上げ直す（いちばん簡単・おすすめ）</h3>
+<p>LPの画像には決まった名前が付いています。<b>同じ名前の画像を「メディア」にアップロードするだけ</b>で、LPは自動的に一番新しい画像を表示します。コード欄を触る必要はありません。</p>
+<table>
+  <tr><th>差し替えたい場所</th><td>ファイル名</td></tr>
+  <tr><th>各セクションの写真</th><td>sec-03.webp、sec-04.webp、sec-05.webp、sec-06.webp、sec-07.webp、sec-08.webp、sec-11.webp、sec-12.webp、sec-14.webp（番号はセクション番号）</td></tr>
+  <tr><th>お客様の声の写真（4件）</th><td>voice-1.webp（E様）、voice-2.webp（Y様）、voice-3.webp（M様）、voice-4.webp（I様）</td></tr>
+  <tr><th>プロフィール写真</th><td>profile.webp</td></tr>
+  <tr><th>トップ画像</th><td>fv1-pc.webp（PC用）、fv1-sp.webp（スマホ用）</td></tr>
+  <tr><th>開催概要の画像</th><td>woman1.webp（PC用）、overview.webp（スマホ用）</td></tr>
+  <tr><th>クロージングの画像</th><td>fv2-pc.webp</td></tr>
+</table>
+<div class="step"><div class="n">1</div><div class="b">新しい画像を、上の表の名前で保存します。拡張子は <b>.webp のまま</b>にしてください（例：voice-2.webp）。<br>お手元の画像が JPG や PNG の場合は、名前を変えるだけでは webp になりません。「webp 変換」と検索して出てくる無料の変換サイトで webp にしてから、名前を付けてください。</div></div>
+<div class="step"><div class="n">2</div><div class="b">左メニュー <b>メディア &gt; 新規追加</b> で、その画像をアップロードします。</div></div>
+<div class="step"><div class="n">3</div><div class="b">アップロード後、ファイル名が「voice-2-1.webp」のように <b>「-1」「-2」が付いても大丈夫</b>です。LPは同じ名前の中で一番新しいものを自動で選びます。</div></div>
+<div class="step"><div class="n">4</div><div class="b">LPのページを開いて確認します。前の画像が見えるときは、<span class="kbd">Ctrl</span>＋<span class="kbd">F5</span>（Macは <span class="kbd">⌘</span>＋<span class="kbd">Shift</span>＋<span class="kbd">R</span>）で強制再読み込みしてください。</div></div>
+<div class="note"><b>元に戻したいとき</b>　メディアで新しくアップロードした画像を削除すると、その前の画像に自動で戻ります。<br><b>古い画像の整理</b>　同じ名前の古い画像はメディアに残しておいても、削除しても、LPの表示には影響しません（常に一番新しいものを使うため）。</div>
+
+<h3>方法B：別の名前の画像に差し替える（コード欄でURLを書き換える）</h3>
+<p>名前を揃えられない場合や、方法Aでうまくいかない場合はこちらです。</p>
+<div class="step"><div class="n">1</div><div class="b">左メニュー <b>メディア &gt; 新規追加</b> で、新しい画像をアップロードします（JPG・PNG のままで構いません）。</div></div>
 <div class="step"><div class="n">2</div><div class="b">アップロード後、その画像をクリックして開き、右側の <b>「ファイルのURL」</b> の横にある「URLをクリップボードにコピー」を押します。</div></div>
-<div class="step"><div class="n">3</div><div class="b">LPの編集画面を開き、コード欄で差し替えたい画像の名前を検索します。名前はセクション番号と同じです（例：<b>sec-05.webp</b>、お客様の声は <b>voice-1.webp</b>〜<b>voice-4.webp</b>、プロフィールは <b>profile.webp</b>）。</div></div>
+<div class="step"><div class="n">3</div><div class="b">LPの編集画面を開き、コード欄で差し替えたい画像の名前を検索します（例：<b>sec-05.webp</b>）。</div></div>
 <div class="step"><div class="n">4</div><div class="b"><b>src="…"</b> の中身を、コピーしたURLに丸ごと置き換えます。前後の引用符（"）は残してください。</div></div>
 <div class="code"><span class="dim">変更前</span>
 &lt;img src="<span class="hl">{{LP_IMG}}/sec-05.webp</span>" width="1536" height="1024" alt="…" loading="lazy"&gt;
 
 <span class="dim">変更後（メディアにアップロードした画像のURLに）</span>
 &lt;img src="<span class="hl">https://amamiyuh.com/wp-content/uploads/2026/09/new-photo.jpg</span>" width="1536" height="1024" alt="…" loading="lazy"&gt;</div>
-<div class="step"><div class="n">5</div><div class="b">同じタグの <b>alt="…"</b> には、画像の内容を短い日本語で書きます（例：alt="ノートに書き込む女性"）。検索エンジン対策と、画像が表示されないときの代替文になります。</div></div>
+<div class="step"><div class="n">5</div><div class="b">同じタグの <b>alt="…"</b> には、画像の内容を短い日本語で書きます（例：alt="ノートに書き込む女性"）。</div></div>
 <div class="step"><div class="n">6</div><div class="b">「更新」を押して、ページで確認します。</div></div>
-<div class="note"><b>トップ画像（FV）と、開催概要の画像（overview.webp／woman1.webp）</b>は、PC用とスマホ用で2枚1組になっています。差し替えるときは2枚ともご用意ください。分からない場合は制作担当にご依頼いただければ対応します。</div>
+<div class="note"><b>トップ画像（FV）と開催概要の画像</b>は、PC用とスマホ用で2枚1組です。差し替えるときは2枚ともご用意ください。文字入りのトップ画像の作り直しは制作担当にご依頼ください。</div>
 
 <h2>4. お客様の声を追加・変更する</h2>
 <p>コード欄で「09 お客様の声」を検索すると、4件が同じ形で並んでいます。1件分は次の形です。</p>
@@ -149,7 +167,7 @@
   &lt;/div&gt;
 &lt;/article&gt;</div>
 <ul>
-  <li><b>変更する</b>：黄色の部分（写真名・タイトル・お名前と属性・本文）だけを書き換えます。段落を増やすときは &lt;p&gt;〜&lt;/p&gt; を1組追加します。</li>
+  <li><b>変更する</b>：黄色の部分（タイトル・お名前と属性・本文）だけを書き換えます。写真は「3. 方法A」のとおり voice-1〜4.webp の名前でメディアに上げ直せば変わります。段落を増やすときは &lt;p&gt;〜&lt;/p&gt; を1組追加します。</li>
   <li><b>追加する</b>：&lt;article ...&gt; から &lt;/article&gt; までをコピーして、4件目の &lt;/article&gt; の直後に貼り、中身を書き換えます。</li>
   <li><b>削除する</b>：その1件の &lt;article ...&gt; から &lt;/article&gt; までを削除します。</li>
 </ul>
