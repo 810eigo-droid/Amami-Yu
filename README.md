@@ -24,13 +24,20 @@ preview/
 ## 設置手順
 
 ### 1. 子テーマにファイルを置く
-1. THE THOR 公式の子テーマ（the-thor-child）を「外観 > テーマ」で有効化する（未導入なら先に入れる）。
-2. `wordpress/the-thor-child/` の中身を、サーバーの `wp-content/themes/the-thor-child/` にそのままアップロードする
-   （FTP、またはサーバーのファイルマネージャー）。
-3. 子テーマの `functions.php` の末尾に次の1行を追加する。
+**子テーマが未導入の場合（かんたん）**
+1. `dist/the-thor-child-lp.zip` をダウンロードする。
+2. 「外観 > テーマ > 新規追加 > テーマのアップロード」で zip を選んで「今すぐインストール」→「有効化」。
+   （style.css / functions.php / LP用ファイル一式が入った子テーマ）
+
+**すでに子テーマ（the-thor-child）が有効な場合**
+1. `wordpress/the-thor-child/` のうち `page-lp.php`、`functions-lp.php`、`assets/` を
+   サーバーの `wp-content/themes/the-thor-child/` にアップロードする（FTP、サーバーのファイルマネージャー、または WP File Manager プラグイン）。
+   既存の style.css / functions.php は上書きしない。
+2. 子テーマの `functions.php` の末尾に次の1行を追加する。
    ```php
    require_once get_stylesheet_directory() . '/functions-lp.php';
    ```
+3. `zip` を作り直すときは `dist/` を参照。
 4. 申込フォームのURLは `functions-lp.php` の `AMAMI_LP_CTA_URL` に設定済み（https://1lejend.com/stepmail/kd.php?no=fqHSUws）。
    変更するときはここを書き換えると全CTAボタンのリンク先が一括で変わる。
 
