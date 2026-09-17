@@ -17,6 +17,9 @@
   --lp-orange-light: #ff9a4a;
   --lp-orange-deep: #d9600e;
   --lp-green: #7b9a6d;       /* 葉のモチーフ色 */
+  --lp-sky: #d9ecf3;         /* うすい水色（ポイント色） */
+  --lp-sky-deep: #a6d0df;
+  --lp-sky-ink: #5c9db4;
   --lp-white: #ffffff;
   --lp-max: 760px;
   --lp-serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
@@ -56,26 +59,48 @@
 #amami-lp .lp-inner--narrow { max-width: 640px; }
 
 #amami-lp .lp-h2 {
-  font-size: clamp(1.35rem, 1.1rem + 1.4vw, 1.75rem);
-  text-align: center;
-  margin-bottom: 36px;
   position: relative;
-  padding-bottom: 18px;
+  font-size: clamp(1.3rem, 1.05rem + 1.3vw, 1.65rem);
+  text-align: center;
+  margin: 0 0 32px;
+  padding: 26px 30px 24px;
+  background: linear-gradient(115deg, #fdf1f3 0%, #f8e0e4 58%, #e8f3f7 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(184, 100, 108, .10);
+  overflow: hidden;
 }
-#amami-lp .lp-h2::after {
+#amami-lp .lp-h2::before {            /* 左上：水色のひし形 */
   content: "";
-  display: block;
-  width: 48px;
-  height: 2px;
-  background: var(--lp-rose);
-  margin: 16px auto 0;
-  border-radius: 2px;
+  position: absolute;
+  left: -16px; top: -16px;
+  width: 46px; height: 46px;
+  background: var(--lp-sky-deep);
+  transform: rotate(45deg);
+  opacity: .85;
 }
-#amami-lp .lp-h2--left { text-align: left; }
-#amami-lp .lp-h2--left::after { margin-left: 0; }
+#amami-lp .lp-h2::after {             /* 右下：ローズの輪 */
+  content: "";
+  position: absolute;
+  right: -34px; bottom: -34px;
+  width: 96px; height: 96px;
+  border: 2px solid rgba(184, 100, 108, .22);
+  border-radius: 50%;
+}
 #amami-lp .lp-h3 {
+  position: relative;
   font-size: clamp(1.1rem, 1rem + 0.6vw, 1.3rem);
   margin: 0 0 16px;
+  padding: 8px 14px 10px 18px;
+  background: linear-gradient(90deg, #fdf1f3 0%, rgba(253, 241, 243, 0) 85%);
+  border-left: 5px solid var(--lp-rose);
+  border-radius: 0 10px 10px 0;
+}
+#amami-lp .lp-h3::after {             /* 下辺：水色の短いライン */
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 40%; height: 2px;
+  background: var(--lp-sky-deep);
 }
 #amami-lp .lp-lead {
   text-align: center;
@@ -213,7 +238,8 @@
 }
 #amami-lp .lp-step .lp-h3 { margin-bottom: 12px; }
 #amami-lp .lp-chain {
-  background: var(--lp-cream);
+  background: #f2f8fb;
+  border: 1px solid var(--lp-sky);
   border-radius: 12px;
   padding: 20px;
   margin: 18px 0;
@@ -236,7 +262,7 @@
 #amami-lp .lp-outcome {
   counter-reset: outcome;
   background: var(--lp-white);
-  border: 1px solid rgba(184,100,108,.25);
+  border: 1px solid var(--lp-sky-deep);
   border-radius: 16px;
   padding: 26px 24px;
   margin: 20px 0;
@@ -279,7 +305,7 @@
   height: 72px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--lp-rose-soft);
+  border: 3px solid var(--lp-sky);
   box-shadow: 0 4px 12px rgba(120,80,84,.15);
 }
 #amami-lp .lp-review__title {
@@ -302,7 +328,7 @@
 #amami-lp .lp-profile__name { font-size: 1.5rem; margin: 0 0 16px; }
 #amami-lp .lp-profile__stat {
   display: inline-block;
-  background: var(--lp-rose-soft);
+  background: var(--lp-sky);
   color: var(--lp-rose-deep);
   padding: 6px 16px;
   border-radius: 999px;
@@ -380,7 +406,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.4rem;
-  color: var(--lp-rose);
+  color: var(--lp-sky-ink);
   transition: transform .2s ease;
 }
 #amami-lp .lp-faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
@@ -427,73 +453,25 @@
   #amami-lp .lp-reveal.is-in { opacity: 1; transform: none; }
 }
 
-/* ---------- 繋ぎ目デザイン ---------- */
-/* 全幅の見出しバンド（セクションの先頭、.lp-inner の外に置く） */
-#amami-lp .lp-band {
-  position: relative;
-  margin: -64px -20px 44px;      /* セクションの余白を打ち消して画面いっぱいに */
-  padding: 40px 20px 46px;
-  background: var(--lp-rose);
-  color: var(--lp-white);
-  text-align: center;
-  overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), 0 100%);
+/* ---------- セクション画像の枠 ----------
+   画像は object-fit: cover で枠に合わせて自動トリミングされるので、
+   差し替えるときは src のURLを変えるだけでよい（縦横比が違っても崩れない）。 */
+#amami-lp .lp-visual { margin: 0 0 28px; }
+#amami-lp .lp-visual img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(120, 80, 84, .14);
 }
-#amami-lp .lp-band::before {          /* 左上の淡いピンクの三角 */
-  content: "";
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 42%;
-  background: linear-gradient(135deg, #f7d3d8 0%, #efb9c0 100%);
-  clip-path: polygon(0 0, 100% 0, 38% 100%, 0 100%);
+#amami-lp .lp-visual--square img { aspect-ratio: 1 / 1; }
+#amami-lp .lp-visual--tall img { aspect-ratio: 4 / 5; }
+#amami-lp .lp-visual__caption { font-size: .82rem; color: var(--lp-ink-soft); text-align: center; margin: 10px 0 0; }
+/* 画像＋文章の横並び（PC）／縦積み（スマホ） */
+#amami-lp .lp-media { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; }
+#amami-lp .lp-media .lp-visual { margin: 0; }
+@media (min-width: 700px) {
+  #amami-lp .lp-media { grid-template-columns: 280px 1fr; gap: 28px; }
+  #amami-lp .lp-media--right { grid-template-columns: 1fr 280px; }
+  #amami-lp .lp-media--right .lp-visual { order: 2; }
 }
-#amami-lp .lp-band::after {           /* 右下の少し濃い帯 */
-  content: "";
-  position: absolute;
-  right: -10%; bottom: 0;
-  width: 40%; height: 100%;
-  background: var(--lp-rose-deep);
-  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
-  opacity: .55;
-}
-#amami-lp .lp-band .lp-h2 {
-  position: relative;
-  z-index: 1;
-  color: var(--lp-white);
-  margin: 0;
-  padding: 0;
-  text-shadow: 0 1px 8px rgba(120, 50, 60, .35);
-}
-#amami-lp .lp-band .lp-h2::after { display: none; }
-#amami-lp .lp-band__sub {
-  position: relative;
-  z-index: 1;
-  display: block;
-  font-family: var(--lp-sans);
-  font-size: .8rem;
-  letter-spacing: .22em;
-  opacity: .9;
-  margin-bottom: 8px;
-}
-
-/* 斜めストライプの区切り帯（セクションとセクションの間に置く）
-   ストライプ層だけを横に流す。-58deg・周期26px のストライプは横方向 30.66px で1周期になるので、
-   background-size を 30.66px にしてその分だけ動かすと継ぎ目なくループする。 */
-#amami-lp .lp-divider {
-  height: 46px;
-  margin: -1px 0;
-  background:
-    repeating-linear-gradient(-58deg, rgba(255,255,255,.3) 0 10px, rgba(255,255,255,0) 10px 26px),
-    linear-gradient(110deg, #fbe6e9 0%, #f3c3ca 28%, #e69aa6 52%, #f5cfd4 78%, #fbe9ec 100%);
-  background-size: 30.66px 100%, 100% 100%;
-  background-position: 0 0, 0 0;
-  clip-path: polygon(0 28%, 100% 0, 100% 72%, 0 100%);
-}
-@keyframes lp-stripe-flow {
-  from { background-position: 0 0, 0 0; }
-  to   { background-position: 30.66px 0, 0 0; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  #amami-lp .lp-divider { animation: lp-stripe-flow 1.6s linear infinite; }
-}
-#amami-lp .lp-divider--soft { opacity: .8; height: 36px; }

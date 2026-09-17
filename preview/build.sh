@@ -36,3 +36,7 @@ cat <<'TAIL'
 TAIL
 } > "$OUT"
 echo "wrote $OUT"
+# 旧エディタ用: 全ブロックを1ファイルに結合（トークンはそのまま。WordPress側で置換される）
+ALL=wordpress/blocks/ALL.html
+{ for f in wordpress/blocks/[0-9]*.html; do cat "$f"; echo; done; } > "$ALL"
+echo "wrote $ALL"
