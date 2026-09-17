@@ -221,10 +221,22 @@ function amami_lp_replace_placeholders( $content ) {
 	if ( ! amami_lp_is_lp() ) {
 		return $content;
 	}
-	return str_replace(
-		array( '{{LP_IMG}}', '{{CTA_URL}}' ),
-		array( amami_lp_img_base(), AMAMI_LP_CTA_URL ),
+	$base = amami_lp_img_base();
+	$dir  = get_stylesheet_directory() . '/assets/lp/img';
+	// {{LP_IMG}}/name.webp → 実URL。同名で差し替えてもブラウザが古い画像を使わないよう、
+	// 子テーマ内に同じファイルがあればその更新日時を ?v= として付ける。
+	$content = preg_replace_callback(
+		'#\{\{LP_IMG\}\}/([A-Za-z0-9_.-]+)#',
+		function ( $m ) use ( $base, $dir ) {
+			$url  = $base . '/' . $m[1];
+			$file = $dir . '/' . $m[1];
+			if ( file_exists( $file ) ) {
+				$url .= '?v=' . filemtime( $file );
+			}
+			return $url;
+		},
 		$content
 	);
+	return str_replace( array( '{{LP_IMG}}', '{{CTA_URL}}' ), array( $base, AMAMI_LP_CTA_URL ), $content );
 }
 add_filter( 'the_content', 'amami_lp_replace_placeholders', 5 );
