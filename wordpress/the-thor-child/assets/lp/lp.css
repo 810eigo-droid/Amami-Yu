@@ -69,14 +69,14 @@
   box-shadow: 0 8px 24px rgba(184, 100, 108, .10);
   overflow: hidden;
 }
-#amami-lp .lp-h2::before {            /* 左上：水色のひし形 */
+#amami-lp .lp-h2::before {            /* 左上：オレンジのドット（外側にうすい輪） */
   content: "";
   position: absolute;
-  left: -16px; top: -16px;
-  width: 46px; height: 46px;
-  background: var(--lp-sky-deep);
-  transform: rotate(45deg);
-  opacity: .85;
+  left: 16px; top: 16px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--lp-orange);
+  box-shadow: 0 0 0 5px rgba(240, 122, 31, .18);
 }
 #amami-lp .lp-h2::after {             /* 右下：ローズの輪 */
   content: "";
