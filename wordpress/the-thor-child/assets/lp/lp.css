@@ -426,3 +426,63 @@
   #amami-lp .lp-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
   #amami-lp .lp-reveal.is-in { opacity: 1; transform: none; }
 }
+
+/* ---------- 繋ぎ目デザイン ---------- */
+/* 全幅の見出しバンド（セクションの先頭、.lp-inner の外に置く） */
+#amami-lp .lp-band {
+  position: relative;
+  margin: -64px -20px 44px;      /* セクションの余白を打ち消して画面いっぱいに */
+  padding: 40px 20px 46px;
+  background: var(--lp-rose);
+  color: var(--lp-white);
+  text-align: center;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), 0 100%);
+}
+#amami-lp .lp-band::before {          /* 左上の淡いピンクの三角 */
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 42%;
+  background: linear-gradient(135deg, #f7d3d8 0%, #efb9c0 100%);
+  clip-path: polygon(0 0, 100% 0, 38% 100%, 0 100%);
+}
+#amami-lp .lp-band::after {           /* 右下の少し濃い帯 */
+  content: "";
+  position: absolute;
+  right: -10%; bottom: 0;
+  width: 40%; height: 100%;
+  background: var(--lp-rose-deep);
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+  opacity: .55;
+}
+#amami-lp .lp-band .lp-h2 {
+  position: relative;
+  z-index: 1;
+  color: var(--lp-white);
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 1px 8px rgba(120, 50, 60, .35);
+}
+#amami-lp .lp-band .lp-h2::after { display: none; }
+#amami-lp .lp-band__sub {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-family: var(--lp-sans);
+  font-size: .8rem;
+  letter-spacing: .22em;
+  opacity: .9;
+  margin-bottom: 8px;
+}
+
+/* 斜めストライプの区切り帯（セクションとセクションの間に置く） */
+#amami-lp .lp-divider {
+  height: 46px;
+  margin: -1px 0;
+  background:
+    repeating-linear-gradient(-58deg, rgba(255,255,255,.28) 0 10px, rgba(255,255,255,0) 10px 26px),
+    linear-gradient(110deg, #fbe6e9 0%, #f3c3ca 28%, #e69aa6 52%, #f5cfd4 78%, #fbe9ec 100%);
+  clip-path: polygon(0 28%, 100% 0, 100% 72%, 0 100%);
+}
+#amami-lp .lp-divider--soft { opacity: .8; height: 36px; }
