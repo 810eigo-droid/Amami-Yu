@@ -13,13 +13,15 @@ function amami_lp_is_lp() {
 }
 
 /**
- * テーマ側（THE THOR）が SEO メタを出力する設定になっているかの判定。
- * 現状は「必ず true」ではなく「false」を返し、テンプレート側のフォールバックを出力します。
- * 実サイトのHTMLソースで description / og:title が二重になっていたら、
- * ここを return true; に変えてください。
+ * SEOプラグイン（Yoast SEO / SEO SIMPLE PACK / All in One SEO / Rank Math）が有効なら、
+ * title・description・OGP はそちらに任せ、テンプレート側のフォールバックは出力しない。
+ * プラグインを使わない構成でタグが二重になる場合は return true; に固定してください。
  */
 function amami_lp_theme_prints_seo() {
-	return false;
+	return defined( 'WPSEO_VERSION' )
+		|| defined( 'SSP_VERSION' )
+		|| defined( 'AIOSEO_VERSION' )
+		|| defined( 'RANK_MATH_VERSION' );
 }
 
 /**

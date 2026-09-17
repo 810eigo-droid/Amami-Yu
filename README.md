@@ -54,8 +54,8 @@ preview/
 - **抜粋**欄に説明文を入れる → `meta description` と OGP に使われる。
   例: 「今の悩み」と「家族の中で身につけた役割」のつながりを90分で整理する、あまみ悠のオンライン個別コーチング。役割から読み解くミニ講座の視聴者限定 5,500円（税込）、毎月5名様。
 - **アイキャッチ画像**に `fv1-pc.webp` を設定 → OGP画像（SNSシェア時）になる。
+- このサイトは Yoast SEO が有効なので、タイトル・ディスクリプション・OGP は固定ページ編集画面下部の **Yoast SEO 欄** で設定する（テンプレート側のフォールバックは自動でオフになる）。
 - 公開後、ページの「ソースを表示」で `description` や `og:title` が **二重に出ていないか** 確認する。
-  二重なら THE THOR 側が出力しているので、`functions-lp.php` の `amami_lp_theme_prints_seo()` を `return true;` に変える。
 - `17-jsonld.html` 内の `serviceUrl` を公開後のLPの実URLに書き換える。
 - 特商法（https://amamiyuh.com/law/）・プライバシーポリシー（https://amamiyuh.com/privacy-policy/）は `16-footer.html` に設定済み。
 - 見出しは h1（FVに1つ）→ h2（各セクション）→ h3 の階層になっている。画像には alt を設定済み。
