@@ -36,7 +36,7 @@ $amami_lp_ogp   = has_post_thumbnail()
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/lp/img/fv1-sp.webp' ); ?>" media="(max-width: 767px)">
 <link rel="preload" as="image" href="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/lp/img/fv1-pc.webp' ); ?>" media="(min-width: 768px)">
-<?php wp_head(); ?>
+<?php amami_lp_head(); ?>
 </head>
 <body <?php body_class( 'amami-lp-body' ); ?>>
 <?php wp_body_open(); ?>
@@ -48,6 +48,6 @@ while ( have_posts() ) :
 endwhile;
 ?>
 </main>
-<?php wp_footer(); ?>
+<?php amami_lp_footer(); ?>
 </body>
 </html>

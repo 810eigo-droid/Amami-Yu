@@ -47,9 +47,6 @@ function amami_lp_enqueue_assets() {
 			wp_dequeue_script( $handle );
 		}
 	}
-	// 子テーマ本体の style.css（THE THOR の子テーマは親CSSを @import している場合がある）も外す
-	wp_dequeue_style( 'the-thor-child-style' );
-	wp_dequeue_style( 'child-style' );
 
 	$dir = get_stylesheet_directory();
 	$uri = get_stylesheet_directory_uri();
@@ -64,6 +61,39 @@ function amami_lp_enqueue_assets() {
 	wp_enqueue_script( 'amami-lp', $uri . '/assets/lp/lp.js', array(), filemtime( $dir . '/assets/lp/lp.js' ), true );
 }
 add_action( 'wp_enqueue_scripts', 'amami_lp_enqueue_assets', 999 );
+
+/**
+ * THE THOR は自身のCSS/JSを wp_head / wp_footer の中で直接出力するため、
+ * wp_enqueue の解除だけでは残る。LPでは出力をいったん受け取り、
+ * 親テーマ（/themes/the-thor/）由来の <link> <script> と、
+ * THE THOR が出力する <style> を取り除いてから出力する。
+ * Yoast などプラグインのタグ、WP本体の title / canonical はそのまま残る。
+ */
+function amami_lp_strip_parent_assets( $html ) {
+	$parent = preg_quote( get_template_directory_uri() . '/', '#' );
+	// 相対パス（/wp-content/themes/the-thor/）で出力される場合にも対応
+	$parent_rel = preg_quote( wp_make_link_relative( get_template_directory_uri() ) . '/', '#' );
+	$patterns = array(
+		'#<link\b[^>]*(?:' . $parent . '|' . $parent_rel . ')[^>]*>\s*#i',
+		'#<script\b[^>]*src=["\'][^"\']*(?:' . $parent . '|' . $parent_rel . ')[^"\']*["\'][^>]*>\s*</script>\s*#i',
+		'#<style\b[^>]*id=["\']the-?thor[^"\']*["\'][^>]*>.*?</style>\s*#is',
+	);
+	return preg_replace( $patterns, '', $html );
+}
+
+/** LPテンプレート内で wp_head() の代わりに呼ぶ */
+function amami_lp_head() {
+	ob_start();
+	wp_head();
+	echo amami_lp_strip_parent_assets( ob_get_clean() );
+}
+
+/** LPテンプレート内で wp_footer() の代わりに呼ぶ */
+function amami_lp_footer() {
+	ob_start();
+	wp_footer();
+	echo amami_lp_strip_parent_assets( ob_get_clean() );
+}
 
 /** LPでは絵文字用スクリプトなど不要なものを外して軽くする */
 function amami_lp_trim_head() {
