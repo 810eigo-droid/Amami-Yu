@@ -59,7 +59,7 @@ preview/
 - **アイキャッチ画像**に `fv1-pc.webp` を設定 → OGP画像（SNSシェア時）になる。
 - このサイトは Yoast SEO が有効なので、タイトル・ディスクリプション・OGP は固定ページ編集画面下部の **Yoast SEO 欄** で設定する（テンプレート側のフォールバックは自動でオフになる）。
 - 公開後、ページの「ソースを表示」で `description` や `og:title` が **二重に出ていないか** 確認する。
-- `17-jsonld.html` 内の `serviceUrl` を公開後のLPの実URLに書き換える。
+- LPのスラッグは `family-role-coaching`（`17-jsonld.html` の `serviceUrl` と一致させる）。
 - 特商法（https://amamiyuh.com/law/）・プライバシーポリシー（https://amamiyuh.com/privacy-policy/）は `16-footer.html` に設定済み。
 - 見出しは h1（FVに1つ）→ h2（各セクション）→ h3 の階層になっている。画像には alt を設定済み。
 - FV画像は `fetchpriority="high"` と preload、それ以外は遅延読み込み。
