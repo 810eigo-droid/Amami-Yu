@@ -60,6 +60,7 @@
 
 #amami-lp .lp-h2 {
   position: relative;
+  isolation: isolate;                 /* 飾りを文字の後ろ・背景の前に置くため */
   font-size: clamp(1.3rem, 1.05rem + 1.3vw, 1.65rem);
   text-align: center;
   margin: 0 0 32px;
@@ -67,24 +68,34 @@
   background: linear-gradient(115deg, #fdf1f3 0%, #f8e0e4 58%, #e8f3f7 100%);
   border-radius: 18px;
   box-shadow: 0 8px 24px rgba(184, 100, 108, .10);
-  overflow: hidden;
 }
-#amami-lp .lp-h2::before {            /* 左上：オレンジのドット（外側にうすい輪） */
+#amami-lp .lp-h2::before {            /* 左上：ふわっとぼけたオレンジの円（枠から少しはみ出す） */
   content: "";
   position: absolute;
-  left: 16px; top: 16px;
-  width: 14px; height: 14px;
+  z-index: -1;
+  left: -46px; top: -50px;
+  width: 170px; height: 170px;
   border-radius: 50%;
-  background: var(--lp-orange);
-  box-shadow: 0 0 0 5px rgba(240, 122, 31, .18);
+  background: radial-gradient(circle at 45% 45%,
+    rgba(240, 122, 31, .50) 0%,
+    rgba(240, 122, 31, .28) 45%,
+    rgba(240, 122, 31, .08) 68%,
+    rgba(240, 122, 31, 0) 78%);
+  filter: blur(4px);
+  pointer-events: none;
 }
-#amami-lp .lp-h2::after {             /* 右下：ローズの輪 */
+#amami-lp .lp-h2::after {             /* 右下：ローズの輪（うすく） */
   content: "";
   position: absolute;
-  right: -34px; bottom: -34px;
+  z-index: -1;
+  right: -22px; bottom: -26px;
   width: 96px; height: 96px;
   border: 2px solid rgba(184, 100, 108, .22);
   border-radius: 50%;
+  pointer-events: none;
+}
+@media (max-width: 699px) {
+  #amami-lp .lp-h2::before { width: 130px; height: 130px; left: -36px; top: -40px; }
 }
 #amami-lp .lp-h3 {
   position: relative;
