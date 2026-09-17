@@ -49,6 +49,21 @@
   color: var(--lp-rose-deep);
 }
 
+/* ---------- 改行の制御 ----------
+   <br class="pc-br"> … PC（700px以上）だけ改行 / <br class="sp-br"> … スマホだけ改行 */
+#amami-lp .sp-br { display: inline; }
+#amami-lp .pc-br { display: none; }
+@media (min-width: 700px) {
+  #amami-lp .sp-br { display: none; }
+  #amami-lp .pc-br { display: inline; }
+}
+/* 見出し・ボタンは文節単位で折り返す（対応ブラウザのみ。非対応は通常の折り返し） */
+#amami-lp .lp-h2, #amami-lp .lp-h3, #amami-lp .lp-hook__title, #amami-lp .lp-btn,
+#amami-lp .lp-em, #amami-lp .lp-closing__copy, #amami-lp .lp-review__title {
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;
+}
+
 /* ---------- 共通レイアウト ---------- */
 #amami-lp .lp-section { padding: 64px 20px; }
 #amami-lp .lp-section--tight { padding: 40px 20px; }
@@ -163,6 +178,9 @@
 #amami-lp .lp-btn__sub { display: block; font-size: 0.82rem; font-weight: 500; opacity: .92; }
 #amami-lp .lp-btn:focus-visible { outline: 3px solid var(--lp-orange-deep); outline-offset: 3px; }
 #amami-lp .lp-cta__note { margin-top: 12px; font-size: 0.85rem; color: var(--lp-ink-soft); }
+@media (max-width: 699px) {
+  #amami-lp .lp-btn { min-width: 0; width: 100%; padding: 16px 16px; font-size: 1.02rem; }
+}
 
 /* ---------- 01 FV ---------- */
 #amami-lp .lp-fv { padding: 0; background: #fbf3f1; }
@@ -455,7 +473,8 @@
   transition: transform .3s ease;
 }
 #amami-lp .lp-sticky.is-visible { transform: translateY(0); }
-#amami-lp .lp-sticky .lp-btn { display: block; min-width: 0; padding: 14px 18px; font-size: .95rem; }
+#amami-lp .lp-sticky .lp-btn { display: block; min-width: 0; padding: 12px 16px; font-size: .98rem; line-height: 1.4; }
+#amami-lp .lp-sticky .lp-btn__sub { font-size: .74rem; margin-top: 2px; }
 @media (min-width: 900px) { #amami-lp .lp-sticky { display: none; } }
 
 /* ---------- スクロールで表示 ---------- */
