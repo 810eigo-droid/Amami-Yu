@@ -27,7 +27,10 @@ preview/
 **子テーマが未導入の場合（かんたん）**
 1. `dist/the-thor-child-lp.zip` をダウンロードする。
 2. 「外観 > テーマ > 新規追加 > テーマのアップロード」で zip を選んで「今すぐインストール」→「有効化」。
-   （style.css / functions.php / LP用ファイル一式が入った子テーマ）
+   （style.css / style-user.css / functions.php / LP用ファイル一式が入った子テーマ）
+3. 有効化時に、親テーマ THE THOR のカスタマイザー設定（FV画像・色など）と追加CSSを子テーマへ自動コピーする
+   （WordPress 本体はメニュー位置とウィジェットしか引き継がないため）。コピーは初回の1回だけ。
+   うまく引き継がれない場合は「Customizer Export/Import」プラグインで親→子にエクスポート/インポートする。
 
 **すでに子テーマ（the-thor-child）が有効な場合**
 1. `wordpress/the-thor-child/` のうち `page-lp.php`、`functions-lp.php`、`assets/` を
