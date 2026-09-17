@@ -569,3 +569,23 @@
 @media (prefers-reduced-motion: reduce) {
   #amami-lp .lp-mk { transition: none; background-size: 100% 100%; }
 }
+
+/* ---------- セクション背景画像 ----------
+   使い方: <section class="lp-section lp-section--bg" style="--lp-bg:url({{LP_IMG}}/bg-03.webp)">
+   画像の上に白（--lp-bg-veil の濃さ）をかぶせて文字を読みやすくする。 */
+#amami-lp .lp-section--bg {
+  position: relative;
+  background-color: var(--lp-cream-deep);
+  background-image: var(--lp-bg);
+  background-size: cover;
+  background-position: center;
+  --lp-bg-veil: .80;
+}
+#amami-lp .lp-section--bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, var(--lp-bg-veil));
+  pointer-events: none;
+}
+#amami-lp .lp-section--bg > * { position: relative; }
