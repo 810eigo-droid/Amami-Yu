@@ -593,3 +593,4 @@
 #amami-lp .lp-section--bg-texture { --lp-bg-veil: .22; }
 #amami-lp .lp-section--rose.lp-section--bg { background-color: var(--lp-rose-soft); }
 #amami-lp .lp-section--soft.lp-section--bg { background-color: var(--lp-cream-deep); }
+#amami-lp .lp-section--white.lp-section--bg { background-color: var(--lp-white); }
