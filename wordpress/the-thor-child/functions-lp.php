@@ -95,6 +95,38 @@ function amami_lp_footer() {
 	echo amami_lp_strip_parent_assets( ob_get_clean() );
 }
 
+/**
+ * 旧エディタ（クラシックエディタ）対策。
+ *  - LP表示時は wpautop / wptexturize を外し、貼り付けたHTMLに <p> や <br> が勝手に入らないようにする
+ *  - LPページの編集画面では「ビジュアル」タブを無効化し、TinyMCE が <picture> などを組み替えるのを防ぐ
+ */
+function amami_lp_disable_autop() {
+	if ( ! amami_lp_is_lp() ) {
+		return;
+	}
+	remove_filter( 'the_content', 'wpautop' );
+	remove_filter( 'the_content', 'wptexturize' );
+	remove_filter( 'the_content', 'convert_smilies', 20 );
+}
+add_action( 'wp', 'amami_lp_disable_autop' );
+
+function amami_lp_is_lp_edit_screen() {
+	if ( ! is_admin() ) {
+		return false;
+	}
+	$post_id = 0;
+	if ( isset( $_GET['post'] ) ) {
+		$post_id = (int) $_GET['post'];
+	} elseif ( isset( $_POST['post_ID'] ) ) {
+		$post_id = (int) $_POST['post_ID'];
+	}
+	return $post_id && 'page-lp.php' === get_page_template_slug( $post_id );
+}
+function amami_lp_disable_richedit( $can ) {
+	return amami_lp_is_lp_edit_screen() ? false : $can;
+}
+add_filter( 'user_can_richedit', 'amami_lp_disable_richedit' );
+
 /** LPでは絵文字用スクリプトなど不要なものを外して軽くする */
 function amami_lp_trim_head() {
 	if ( ! amami_lp_is_lp() ) {
