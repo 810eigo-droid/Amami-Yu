@@ -24,7 +24,7 @@ cat <<'HEAD'
 HEAD
 for f in wordpress/blocks/*.html; do
   echo "<!-- ===== $(basename "$f") ===== -->"
-  sed -e 's|{{LP_IMG}}|../wordpress/the-thor-child/assets/lp/img|g' -e 's|{{CTA_URL}}|#apply|g' "$f"
+  sed -e 's|{{LP_IMG}}|../wordpress/the-thor-child/assets/lp/img|g' -e 's|{{CTA_URL}}|https://1lejend.com/stepmail/kd.php?no=fqHSUws|g' "$f"
   echo
 done
 cat <<'TAIL'

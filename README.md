@@ -31,8 +31,8 @@ preview/
    ```php
    require_once get_stylesheet_directory() . '/functions-lp.php';
    ```
-4. 申込フォームのURLが決まったら、`functions-lp.php` の `AMAMI_LP_CTA_URL` を書き換える。
-   全CTAボタンのリンク先が一括で変わる。
+4. 申込フォームのURLは `functions-lp.php` の `AMAMI_LP_CTA_URL` に設定済み（https://1lejend.com/stepmail/kd.php?no=fqHSUws）。
+   変更するときはここを書き換えると全CTAボタンのリンク先が一括で変わる。
 
 ### 2. 固定ページを作る
 1. 「固定ページ > 新規追加」。タイトルは
@@ -49,8 +49,8 @@ preview/
 - **アイキャッチ画像**に `fv1-pc.webp` を設定 → OGP画像（SNSシェア時）になる。
 - 公開後、ページの「ソースを表示」で `description` や `og:title` が **二重に出ていないか** 確認する。
   二重なら THE THOR 側が出力しているので、`functions-lp.php` の `amami_lp_theme_prints_seo()` を `return true;` に変える。
-- `17-jsonld.html` 内の `https://example.com/...` を公開後の実URLに書き換える。
-- `16-footer.html` の特商法・プライバシーポリシーのリンク先（`/tokushoho/` `/privacy-policy/`）を実際のURLに合わせる。
+- `17-jsonld.html` 内の `serviceUrl` を公開後のLPの実URLに書き換える。
+- 特商法（https://amamiyuh.com/law/）・プライバシーポリシー（https://amamiyuh.com/privacy-policy/）は `16-footer.html` に設定済み。
 - 見出しは h1（FVに1つ）→ h2（各セクション）→ h3 の階層になっている。画像には alt を設定済み。
 - FV画像は `fetchpriority="high"` と preload、それ以外は遅延読み込み。
 
@@ -60,7 +60,9 @@ preview/
 ```
 生成された `preview/index.html` をブラウザで開く。
 
-## 原稿との差異・要確認事項
-- FV画像の文言は「診断を受けた方限定」、原稿本文は「ミニ講座 視聴者限定」。どちらに揃えるか要確認。
-- 原稿の「（画像）」指定があるお客様の声は、写真素材がないためテキストカードで作成。写真が来たら `.lp-review` に追加可能。
-- 申込フォームURL・特商法ページ・プライバシーポリシーのURLは未定のためプレースホルダー。
+## クライアント様指示の反映状況
+- FV: 支給画像をそのまま使用（PC: `fv1-pc.webp` / スマホ: `fv1-sp.webp`）。スマホ用は縦長画像を支給いただいているので切れない。
+- 色合い: FV画像のローズ・ベージュに合わせた。CTAボタン3か所（＋クロージング・スマホ追従）は指定どおりオレンジ。
+- お客様の声4件のイメージ画像: 支給の文字なし画像 `fv2-pc.webp` から4人を切り出して `voice-1〜4.webp` を作成（「写真はイメージです」の注記あり）。
+- クロージング直前に文字なし画像 `fv2-pc.webp` を配置。
+- 文字色・配置・デザインはお任せとのことで、ローズ系見出し＋こげ茶本文に統一。

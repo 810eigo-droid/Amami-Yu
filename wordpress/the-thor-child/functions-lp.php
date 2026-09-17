@@ -78,7 +78,7 @@ add_action( 'wp', 'amami_lp_trim_head' );
 
 /** 申込フォームのURL。ここを書き換えると全CTAボタンのリンク先が一括で変わります。 */
 if ( ! defined( 'AMAMI_LP_CTA_URL' ) ) {
-	define( 'AMAMI_LP_CTA_URL', '#apply' );
+	define( 'AMAMI_LP_CTA_URL', 'https://1lejend.com/stepmail/kd.php?no=fqHSUws' );
 }
 
 /**

@@ -13,8 +13,9 @@
   --lp-cream-deep: #f5ece4;
   --lp-ink: #3b3235;         /* 本文 */
   --lp-ink-soft: #6b5f62;
-  --lp-gold: #f0a91f;        /* CTA（原稿PDFのボタン色） */
-  --lp-gold-deep: #d6920e;
+  --lp-orange: #f07a1f;      /* CTA（クライアント様指定: 目立つオレンジ） */
+  --lp-orange-light: #ff9a4a;
+  --lp-orange-deep: #d9600e;
   --lp-green: #7b9a6d;       /* 葉のモチーフ色 */
   --lp-white: #ffffff;
   --lp-max: 760px;
@@ -107,23 +108,24 @@
   min-width: 300px;
   max-width: 100%;
   padding: 18px 34px;
-  background: linear-gradient(180deg, #f5b83a 0%, var(--lp-gold) 60%, var(--lp-gold-deep) 100%);
-  color: #3b2a12;
+  background: linear-gradient(180deg, var(--lp-orange-light) 0%, var(--lp-orange) 55%, var(--lp-orange-deep) 100%);
+  color: var(--lp-white);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   text-decoration: none;
   border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(214, 146, 14, 0.32);
+  box-shadow: 0 8px 22px rgba(217, 96, 14, 0.35);
   transition: transform .18s ease, box-shadow .18s ease;
   text-align: center;
 }
 #amami-lp .lp-btn:hover, #amami-lp .lp-btn:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(214, 146, 14, 0.42);
-  color: #3b2a12;
+  box-shadow: 0 12px 26px rgba(217, 96, 14, 0.45);
+  color: var(--lp-white);
 }
-#amami-lp .lp-btn__sub { display: block; font-size: 0.82rem; font-weight: 500; opacity: .85; }
+#amami-lp .lp-btn__sub { display: block; font-size: 0.82rem; font-weight: 500; opacity: .92; }
+#amami-lp .lp-btn:focus-visible { outline: 3px solid var(--lp-orange-deep); outline-offset: 3px; }
 #amami-lp .lp-cta__note { margin-top: 12px; font-size: 0.85rem; color: var(--lp-ink-soft); }
 
 /* ---------- 01 FV ---------- */
@@ -271,14 +273,27 @@
   margin-bottom: 20px;
   box-shadow: 0 6px 24px rgba(120, 80, 84, 0.06);
 }
+#amami-lp .lp-review__head { display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: center; margin-bottom: 16px; }
+#amami-lp .lp-review__photo img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--lp-rose-soft);
+  box-shadow: 0 4px 12px rgba(120,80,84,.15);
+}
 #amami-lp .lp-review__title {
   font-family: var(--lp-serif);
   font-size: 1.1rem;
   color: var(--lp-rose-deep);
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
-#amami-lp .lp-review__meta { font-size: .85rem; color: var(--lp-ink-soft); margin-bottom: 14px; }
+#amami-lp .lp-review__meta { font-size: .85rem; color: var(--lp-ink-soft); margin: 0; }
 #amami-lp .lp-review__body { font-size: .96rem; }
+@media (min-width: 700px) {
+  #amami-lp .lp-review__head { grid-template-columns: 96px 1fr; gap: 20px; }
+  #amami-lp .lp-review__photo img { width: 96px; height: 96px; }
+}
 
 /* ---------- 10 プロフィール ---------- */
 #amami-lp .lp-profile { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start; }
@@ -374,6 +389,8 @@
 
 /* ---------- 15 クロージング ---------- */
 #amami-lp .lp-closing { background: linear-gradient(180deg, var(--lp-rose-soft), var(--lp-cream)); }
+#amami-lp .lp-closing__img { margin: 0 auto 36px; max-width: 760px; }
+#amami-lp .lp-closing__img img { border-radius: 16px; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; box-shadow: 0 10px 30px rgba(120,80,84,.15); }
 #amami-lp .lp-closing__copy {
   font-family: var(--lp-serif);
   font-size: clamp(1.2rem, 1rem + 1.2vw, 1.5rem);
