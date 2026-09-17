@@ -174,39 +174,55 @@ if ( ! defined( 'AMAMI_LP_CTA_URL' ) ) {
 }
 
 /**
- * LP画像の置き場所を返す。
- * メディアライブラリに LP の画像（目印: fv1-pc.webp）がアップロードされていれば、
- * その画像と同じフォルダ（例 /wp-content/uploads/2026/09）を使う。
- * 見つからなければ子テーマ内の assets/lp/img を使う。結果は12時間キャッシュする。
+ * LP画像のURLを返す。
+ * メディアライブラリに同じ名前（例 voice-1.webp）または「-1」「-2」付き（voice-1-2.webp）の画像があれば、
+ * その中で一番新しいものを使う。無ければ子テーマ内 assets/lp/img の画像を使う。
+ * 結果は12時間キャッシュし、メディアの追加・削除でキャッシュを捨てる。
  */
-function amami_lp_img_base() {
-	$cached = get_transient( 'amami_lp_img_base' );
-	if ( is_string( $cached ) && '' !== $cached ) {
-		return $cached;
+function amami_lp_img_url( $name ) {
+	$map = get_transient( 'amami_lp_img_map' );
+	if ( ! is_array( $map ) ) {
+		$map = array();
 	}
-	$base = get_stylesheet_directory_uri() . '/assets/lp/img';
-	$found = get_posts( array(
-		'post_type'      => 'attachment',
-		'post_status'    => 'inherit',
-		'posts_per_page' => 1,
-		'fields'         => 'ids',
-		'meta_query'     => array( array(
-			'key'     => '_wp_attached_file',
-			'value'   => 'fv1-pc.webp',
-			'compare' => 'LIKE',
-		) ),
-	) );
-	if ( $found ) {
-		$url = wp_get_attachment_url( $found[0] );
-		if ( $url ) {
-			$base = dirname( $url );
+	if ( isset( $map[ $name ] ) ) {
+		return $map[ $name ];
+	}
+	$url = '';
+	$dot = strrpos( $name, '.' );
+	if ( false !== $dot ) {
+		$stem = substr( $name, 0, $dot );
+		$ext  = substr( $name, $dot + 1 );
+		$found = get_posts( array(
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => 1,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'fields'         => 'ids',
+			'meta_query'     => array( array(
+				'key'     => '_wp_attached_file',
+				'value'   => '(^|/)' . preg_quote( $stem ) . '(-[0-9]+)?\\.' . preg_quote( $ext ) . '$',
+				'compare' => 'REGEXP',
+			) ),
+		) );
+		if ( $found ) {
+			$url = (string) wp_get_attachment_url( $found[0] );
 		}
 	}
-	set_transient( 'amami_lp_img_base', $base, 12 * HOUR_IN_SECONDS );
-	return $base;
+	if ( '' === $url ) {
+		$file = get_stylesheet_directory() . '/assets/lp/img/' . $name;
+		$url  = get_stylesheet_directory_uri() . '/assets/lp/img/' . $name;
+		if ( file_exists( $file ) ) {
+			$url .= '?v=' . filemtime( $file );
+		}
+	}
+	$map[ $name ] = $url;
+	set_transient( 'amami_lp_img_map', $map, 12 * HOUR_IN_SECONDS );
+	return $url;
 }
 /** メディアが追加・削除されたらキャッシュを捨てる */
 function amami_lp_clear_img_cache() {
+	delete_transient( 'amami_lp_img_map' );
 	delete_transient( 'amami_lp_img_base' );
 }
 add_action( 'add_attachment', 'amami_lp_clear_img_cache' );
@@ -214,29 +230,18 @@ add_action( 'delete_attachment', 'amami_lp_clear_img_cache' );
 
 /**
  * HTMLブロック内のトークンを実URLに置換する。
- *  {{LP_IMG}}  → LP画像のフォルダURL（メディア優先、なければ子テーマ内）
- *  {{CTA_URL}} → 申込フォームURL（AMAMI_LP_CTA_URL）
+ *  {{LP_IMG}}/name.webp → 画像URL（メディアの最新版を優先、なければ子テーマ内）
+ *  {{CTA_URL}}          → 申込フォームURL（AMAMI_LP_CTA_URL）
  */
 function amami_lp_replace_placeholders( $content ) {
 	if ( ! amami_lp_is_lp() ) {
 		return $content;
 	}
-	$base = amami_lp_img_base();
-	$dir  = get_stylesheet_directory() . '/assets/lp/img';
-	// {{LP_IMG}}/name.webp → 実URL。同名で差し替えてもブラウザが古い画像を使わないよう、
-	// 子テーマ内に同じファイルがあればその更新日時を ?v= として付ける。
 	$content = preg_replace_callback(
 		'#\{\{LP_IMG\}\}/([A-Za-z0-9_.-]+)#',
-		function ( $m ) use ( $base, $dir ) {
-			$url  = $base . '/' . $m[1];
-			$file = $dir . '/' . $m[1];
-			if ( file_exists( $file ) ) {
-				$url .= '?v=' . filemtime( $file );
-			}
-			return $url;
-		},
+		function ( $m ) { return amami_lp_img_url( $m[1] ); },
 		$content
 	);
-	return str_replace( array( '{{LP_IMG}}', '{{CTA_URL}}' ), array( $base, AMAMI_LP_CTA_URL ), $content );
+	return str_replace( '{{CTA_URL}}', AMAMI_LP_CTA_URL, $content );
 }
 add_filter( 'the_content', 'amami_lp_replace_placeholders', 5 );

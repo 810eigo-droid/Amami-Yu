@@ -15,7 +15,7 @@ $amami_lp_desc  = has_excerpt() ? wp_strip_all_tags( get_the_excerpt() ) : '';
 $amami_lp_url   = get_permalink();
 $amami_lp_ogp   = has_post_thumbnail()
 	? get_the_post_thumbnail_url( get_the_ID(), 'full' )
-	: amami_lp_img_base() . '/fv1-pc.webp';
+	: amami_lp_img_url( 'fv1-pc.webp' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -34,8 +34,8 @@ $amami_lp_ogp   = has_post_thumbnail()
 <?php endif; ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="<?php echo esc_url( amami_lp_img_base() . '/fv1-sp.webp' ); ?>" media="(max-width: 767px)">
-<link rel="preload" as="image" href="<?php echo esc_url( amami_lp_img_base() . '/fv1-pc.webp' ); ?>" media="(min-width: 768px)">
+<link rel="preload" as="image" href="<?php echo esc_url( amami_lp_img_url( 'fv1-sp.webp' ) ); ?>" media="(max-width: 767px)">
+<link rel="preload" as="image" href="<?php echo esc_url( amami_lp_img_url( 'fv1-pc.webp' ) ); ?>" media="(min-width: 768px)">
 <?php amami_lp_head(); ?>
 </head>
 <body <?php body_class( 'amami-lp-body' ); ?>>
