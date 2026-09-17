@@ -476,13 +476,24 @@
   margin-bottom: 8px;
 }
 
-/* 斜めストライプの区切り帯（セクションとセクションの間に置く） */
+/* 斜めストライプの区切り帯（セクションとセクションの間に置く）
+   ストライプ層だけを横に流す。-58deg・周期26px のストライプは横方向 30.66px で1周期になるので、
+   background-size を 30.66px にしてその分だけ動かすと継ぎ目なくループする。 */
 #amami-lp .lp-divider {
   height: 46px;
   margin: -1px 0;
   background:
-    repeating-linear-gradient(-58deg, rgba(255,255,255,.28) 0 10px, rgba(255,255,255,0) 10px 26px),
+    repeating-linear-gradient(-58deg, rgba(255,255,255,.3) 0 10px, rgba(255,255,255,0) 10px 26px),
     linear-gradient(110deg, #fbe6e9 0%, #f3c3ca 28%, #e69aa6 52%, #f5cfd4 78%, #fbe9ec 100%);
+  background-size: 30.66px 100%, 100% 100%;
+  background-position: 0 0, 0 0;
   clip-path: polygon(0 28%, 100% 0, 100% 72%, 0 100%);
+}
+@keyframes lp-stripe-flow {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 30.66px 0, 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #amami-lp .lp-divider { animation: lp-stripe-flow 1.6s linear infinite; }
 }
 #amami-lp .lp-divider--soft { opacity: .8; height: 36px; }
