@@ -174,8 +174,47 @@ if ( ! defined( 'AMAMI_LP_CTA_URL' ) ) {
 }
 
 /**
+ * LP画像の置き場所を返す。
+ * メディアライブラリに LP の画像（目印: fv1-pc.webp）がアップロードされていれば、
+ * その画像と同じフォルダ（例 /wp-content/uploads/2026/09）を使う。
+ * 見つからなければ子テーマ内の assets/lp/img を使う。結果は12時間キャッシュする。
+ */
+function amami_lp_img_base() {
+	$cached = get_transient( 'amami_lp_img_base' );
+	if ( is_string( $cached ) && '' !== $cached ) {
+		return $cached;
+	}
+	$base = get_stylesheet_directory_uri() . '/assets/lp/img';
+	$found = get_posts( array(
+		'post_type'      => 'attachment',
+		'post_status'    => 'inherit',
+		'posts_per_page' => 1,
+		'fields'         => 'ids',
+		'meta_query'     => array( array(
+			'key'     => '_wp_attached_file',
+			'value'   => 'fv1-pc.webp',
+			'compare' => 'LIKE',
+		) ),
+	) );
+	if ( $found ) {
+		$url = wp_get_attachment_url( $found[0] );
+		if ( $url ) {
+			$base = dirname( $url );
+		}
+	}
+	set_transient( 'amami_lp_img_base', $base, 12 * HOUR_IN_SECONDS );
+	return $base;
+}
+/** メディアが追加・削除されたらキャッシュを捨てる */
+function amami_lp_clear_img_cache() {
+	delete_transient( 'amami_lp_img_base' );
+}
+add_action( 'add_attachment', 'amami_lp_clear_img_cache' );
+add_action( 'delete_attachment', 'amami_lp_clear_img_cache' );
+
+/**
  * HTMLブロック内のトークンを実URLに置換する。
- *  {{LP_IMG}}  → 子テーマ内の画像フォルダURL
+ *  {{LP_IMG}}  → LP画像のフォルダURL（メディア優先、なければ子テーマ内）
  *  {{CTA_URL}} → 申込フォームURL（AMAMI_LP_CTA_URL）
  */
 function amami_lp_replace_placeholders( $content ) {
@@ -184,7 +223,7 @@ function amami_lp_replace_placeholders( $content ) {
 	}
 	return str_replace(
 		array( '{{LP_IMG}}', '{{CTA_URL}}' ),
-		array( get_stylesheet_directory_uri() . '/assets/lp/img', AMAMI_LP_CTA_URL ),
+		array( amami_lp_img_base(), AMAMI_LP_CTA_URL ),
 		$content
 	);
 }
