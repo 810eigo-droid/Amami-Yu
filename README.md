@@ -66,6 +66,12 @@ preview/
 - 見出しは h1（FVに1つ）→ h2（各セクション）→ h3 の階層になっている。画像には alt を設定済み。
 - FV画像は `fetchpriority="high"` と preload、それ以外は遅延読み込み。
 
+## 既知の THE THOR との相性と対策（実装済み）
+- THE THOR の「画像遅延読み込み」は本文の `<img>` の src をダミー画像（濃いグレー300×300）に差し替え、`data-layzr` に本物を退避する。LPでは THE THOR のJSを読まないため、`functions-lp.php` で本文出力の最後に元へ戻している。
+- THE THOR は CSS/JS を wp_head / wp_footer に直接出力するため、LPでは出力をバッファして親テーマ由来の `<link>` `<script>` を取り除いている。
+- 子テーマには `style-user.css` が必須（無いと THE THOR が Warning を出す）。
+- 子テーマ有効化時、カスタマイザー設定は WordPress 本体では引き継がれないので `functions.php` で親からコピーしている。
+
 ## ローカルでのプレビュー
 ```bash
 ./preview/build.sh   # blocks/*.html を結合して preview/index.html を生成

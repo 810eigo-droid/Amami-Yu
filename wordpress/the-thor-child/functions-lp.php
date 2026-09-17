@@ -127,6 +127,34 @@ function amami_lp_disable_richedit( $can ) {
 }
 add_filter( 'user_can_richedit', 'amami_lp_disable_richedit' );
 
+/**
+ * THE THOR の画像遅延読み込み（layzr）対策。
+ * THE THOR は本文中の <img> の src をダミー画像に置き換え、本物のURLを data-layzr に退避し、
+ * 自前のJSで戻す。LPではそのJSを読み込まないため、ここで本文出力の最後に元へ戻す。
+ * （LPの画像はブラウザ標準の loading="lazy" で遅延読み込みしている）
+ */
+function amami_lp_undo_theme_lazyload( $content ) {
+	if ( ! amami_lp_is_lp() ) {
+		return $content;
+	}
+	// src="...dummy.gif" ... data-layzr="実URL"  →  src="実URL"
+	$content = preg_replace_callback(
+		'#<img\b[^>]*\bdata-layzr=["\']([^"\']+)["\'][^>]*>#i',
+		function ( $m ) {
+			$tag = $m[0];
+			$real = $m[1];
+			$tag = preg_replace( '#\bsrc=["\'][^"\']*["\']#i', 'src="' . esc_url( $real ) . '"', $tag, 1 );
+			$tag = preg_replace( '#\s+data-layzr(?:-[a-z]+)?=["\'][^"\']*["\']#i', '', $tag );
+			return $tag;
+		},
+		$content
+	);
+	// srcset 版（data-layzr-srcset）にも対応
+	$content = preg_replace( '#\bdata-layzr-srcset=#i', 'srcset=', $content );
+	return $content;
+}
+add_filter( 'the_content', 'amami_lp_undo_theme_lazyload', PHP_INT_MAX );
+
 /** LPでは絵文字用スクリプトなど不要なものを外して軽くする */
 function amami_lp_trim_head() {
 	if ( ! amami_lp_is_lp() ) {
