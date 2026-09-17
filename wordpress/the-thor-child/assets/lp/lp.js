@@ -4,7 +4,7 @@
   if (!root) return;
 
   // セクションのふわっと表示
-  var reveals = root.querySelectorAll('.lp-reveal');
+  var reveals = root.querySelectorAll('.lp-reveal, .lp-mk');
   if ('IntersectionObserver' in window && reveals.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
