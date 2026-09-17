@@ -111,7 +111,6 @@
 }
 @media (max-width: 699px) {
   #amami-lp .lp-h2 { font-size: 1.22rem; padding: 22px 18px 20px; }
-  #amami-lp .lp-hook__title { font-size: 1.22rem; }
   #amami-lp .lp-h2::before { width: 130px; height: 130px; left: -36px; top: -40px; }
 }
 #amami-lp .lp-h3 {
@@ -506,4 +505,9 @@
   #amami-lp .lp-media { grid-template-columns: 280px 1fr; gap: 28px; }
   #amami-lp .lp-media--right { grid-template-columns: 1fr 280px; }
   #amami-lp .lp-media--right .lp-visual { order: 2; }
+}
+
+/* スマホ幅の冒頭見出し（元の指定より後ろに置いて上書き） */
+@media (max-width: 699px) {
+  #amami-lp .lp-hook__title { font-size: 1.22rem; }
 }
