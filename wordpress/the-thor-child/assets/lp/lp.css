@@ -590,9 +590,15 @@
 }
 #amami-lp .lp-section--bg > * { position: relative; }
 /* 漆喰などの淡いテクスチャ用：白のかぶせを弱め、元の色を下地に残す */
-#amami-lp .lp-section--bg-texture { --lp-bg-veil: .22; }
+#amami-lp .lp-section--bg-texture {
+  --lp-bg-veil: .40;
+  /* 上下鏡面のタイル画像を、幅に合わせて縦に繰り返す（拡大しないので粗が出ない） */
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  background-position: top center;
+}
 /* ベージュ（凹凸が強い）はさらに薄く。style 属性に bg-beige を含むセクションだけに効く */
-#amami-lp .lp-section--bg-texture[style*="bg-beige"] { --lp-bg-veil: .55; }
+#amami-lp .lp-section--bg-texture[style*="bg-beige"] { --lp-bg-veil: .60; }
 #amami-lp .lp-section--rose.lp-section--bg { background-color: var(--lp-rose-soft); }
 #amami-lp .lp-section--soft.lp-section--bg { background-color: var(--lp-cream-deep); }
 #amami-lp .lp-section--white.lp-section--bg { background-color: var(--lp-white); }
