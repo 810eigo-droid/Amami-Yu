@@ -27,4 +27,39 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
+
+  // 上へ戻る矢印: 600px以上スクロールしたら表示
+  var totop = root.querySelector('.lp-totop');
+  if (totop) {
+    var onTop = function () { totop.classList.toggle('is-visible', window.scrollY > 600); };
+    window.addEventListener('scroll', onTop, { passive: true });
+    onTop();
+    totop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  // ハンバーガーメニュー
+  var toggle = root.querySelector('.lp-menu__toggle');
+  var menu = root.querySelector('.lp-menu');
+  if (toggle && menu) {
+    var setOpen = function (open) {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? '目次を閉じる' : '目次を開く');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    toggle.addEventListener('click', function () { setOpen(menu.hidden); });
+    menu.addEventListener('click', function (e) {
+      if (e.target === menu || e.target.closest('.lp-menu__close')) { setOpen(false); return; }
+      var link = e.target.closest('a[href^="#"]');
+      if (link) {
+        var target = root.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          setOpen(false);
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) setOpen(false); });
+  }
 })();

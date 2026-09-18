@@ -490,14 +490,15 @@
   transition: transform .3s ease;
 }
 #amami-lp .lp-sticky.is-visible { transform: translateY(0); }
-#amami-lp .lp-sticky .lp-btn { display: block; min-width: 0; width: 100%; max-width: 560px; margin: 0 auto; padding: 12px 16px; font-size: .98rem; line-height: 1.4; }
-#amami-lp .lp-sticky .lp-btn__sub { font-size: .74rem; margin-top: 2px; }
+#amami-lp .lp-sticky { padding: 8px 14px calc(8px + env(safe-area-inset-bottom)); }
+#amami-lp .lp-sticky .lp-btn { display: block; min-width: 0; width: 100%; max-width: 520px; margin: 0 auto; padding: 8px 14px; font-size: .96rem; line-height: 1.3; }
+#amami-lp .lp-sticky .lp-btn__sub { font-size: .7rem; margin-top: 1px; opacity: .9; }
 @media (min-width: 900px) {
-  #amami-lp .lp-sticky { padding: 12px 24px; }
-  #amami-lp .lp-sticky .lp-btn { font-size: 1.05rem; padding: 14px 24px; }
+  #amami-lp .lp-sticky { padding: 10px 24px; }
+  #amami-lp .lp-sticky .lp-btn { font-size: 1.02rem; padding: 11px 24px; }
 }
 /* 追従CTAに隠れないよう、フッターの下に余白 */
-#amami-lp .lp-footer { padding-bottom: 120px; }
+#amami-lp .lp-footer { padding-bottom: 100px; }
 
 /* ---------- スクロールで表示 ---------- */
 @media (prefers-reduced-motion: no-preference) {
@@ -608,3 +609,79 @@
 #amami-lp .lp-section--rose.lp-section--bg { background-color: var(--lp-rose-soft); }
 #amami-lp .lp-section--soft.lp-section--bg { background-color: var(--lp-cream-deep); }
 #amami-lp .lp-section--white.lp-section--bg { background-color: var(--lp-white); }
+
+/* ---------- ハンバーガーメニュー ---------- */
+#amami-lp .lp-menu__toggle {
+  position: fixed;
+  top: 14px; right: 14px;
+  width: 44px; height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 4px 14px rgba(120, 80, 84, .18);
+  cursor: pointer;
+  z-index: 60;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  padding: 0;
+}
+#amami-lp .lp-menu__toggle span { display: block; width: 18px; height: 2px; background: var(--lp-rose-deep); border-radius: 2px; transition: transform .25s ease, opacity .25s ease; }
+#amami-lp .lp-menu__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#amami-lp .lp-menu__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+#amami-lp .lp-menu__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+#amami-lp .lp-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: rgba(59, 50, 53, .45);
+  backdrop-filter: blur(3px);
+}
+#amami-lp .lp-menu[hidden] { display: none; }
+#amami-lp .lp-menu__inner {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: min(320px, 84vw);
+  background: var(--lp-cream);
+  padding: 72px 24px 32px;
+  overflow-y: auto;
+  box-shadow: -8px 0 30px rgba(120, 80, 84, .2);
+  animation: lp-menu-in .25s ease;
+}
+@keyframes lp-menu-in { from { transform: translateX(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+#amami-lp .lp-menu__title { font-family: var(--lp-serif); color: var(--lp-rose-deep); font-size: 1.1rem; margin: 0 0 12px; letter-spacing: .1em; }
+#amami-lp .lp-menu__list li { border-bottom: 1px solid rgba(184, 100, 108, .18); }
+#amami-lp .lp-menu__list a {
+  display: block;
+  padding: 13px 4px;
+  color: var(--lp-ink);
+  text-decoration: none;
+  font-size: .98rem;
+}
+#amami-lp .lp-menu__list a::before { content: "▸"; color: var(--lp-rose); margin-right: 8px; }
+#amami-lp .lp-menu__cta { display: block; min-width: 0; width: 100%; margin-top: 22px; padding: 13px 14px; font-size: .98rem; }
+#amami-lp .lp-menu__close { display: block; width: 100%; margin-top: 14px; padding: 10px; border: 1px solid rgba(184,100,108,.4); border-radius: 999px; background: transparent; color: var(--lp-rose-deep); cursor: pointer; font-size: .92rem; }
+#amami-lp [id] { scroll-margin-top: 12px; }
+
+/* ---------- 上へ戻る矢印 ---------- */
+#amami-lp .lp-totop {
+  position: fixed;
+  right: 14px;
+  bottom: calc(86px + env(safe-area-inset-bottom));
+  width: 42px; height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .94);
+  color: var(--lp-rose-deep);
+  box-shadow: 0 4px 14px rgba(120, 80, 84, .2);
+  cursor: pointer;
+  z-index: 52;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+#amami-lp .lp-totop.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+@media (min-width: 900px) {
+  #amami-lp .lp-totop { right: 24px; bottom: calc(92px + env(safe-area-inset-bottom)); width: 46px; height: 46px; }
+}

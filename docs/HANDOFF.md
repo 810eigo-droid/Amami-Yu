@@ -71,6 +71,9 @@ preview/index.html          WordPress なしのプレビュー。GitHub Pages: h
 - H3: 左ローズ縦線＋下に水色の短いライン。
 - 強調: `.lp-mk`（蛍光マーカー、表示時に左から引かれる）/ `<strong>`（ローズ太字）/ `.lp-big` / `.lp-or`（オレンジ）。
 - CTA: 本文内は02の1つだけ。追従CTA（`.lp-sticky`）は02のCTAが画面外に消えたら表示し、PC・スマホとも最後まで表示（フッターに下余白120px）。
+- 追従CTAの文言は「今の悩みの根っこがわかる / コーチングを受けてみる」（スマホ2行、PC1行）。補足行なし。
+- ハンバーガーメニュー（右上固定）: 目次 check/flow/result/voice/profile/overview/faq へジャンプ＋CTA。上へ戻る矢印（右下、600px以上スクロールで表示）。マークアップは 16-footer。
+- `<picture>` のスマホ用 `<source>` には width/height を付ける（縦長画像の読み込みでレイアウトがずれるため）。
 - アニメーション: セクションのフェードイン、STEP・声カードの時間差表示、CTAの光の流れ。`prefers-reduced-motion` で停止。
 - スマホ: 見出しは文節折り返し（`word-break: auto-phrase`）、`<br class="sp-br">`（スマホのみ改行）/`<br class="pc-br">`（PCのみ改行）で調整済み。ボタンは横幅いっぱい。開催概要の表は縦積み。
 

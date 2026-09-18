@@ -2,7 +2,7 @@
 <section class="lp-fv" aria-label="家族の役割 紐解きコーチング">
   <h1 class="lp-fv__title">今の悩みの根っこがわかる「家族の役割 紐解きコーチング」｜90分・5,500円・オンライン</h1>
   <picture class="lp-fv__img">
-    <source media="(max-width: 767px)" srcset="{{LP_IMG}}/fv1-sp.webp">
+    <source media="(max-width: 767px)" srcset="{{LP_IMG}}/fv1-sp.webp" width="1006" height="1564">
     <img src="{{LP_IMG}}/fv1-pc.webp" width="1672" height="941" alt="診断を受けた方限定「今の悩みの根っこがわかる」家族の役割 紐解きコーチング 90分／5,500円・オンライン" fetchpriority="high">
   </picture>
 </section>
@@ -37,7 +37,7 @@
 </section>
 
 <!-- 04 学んでも「自分のこと」になると難しい理由 -->
-<section class="lp-section lp-section--white">
+<section class="lp-section lp-section--white" id="check">
   <div class="lp-inner lp-inner--narrow lp-reveal">
     <h2 class="lp-h2">たくさん学んできたのに、<br>「自分のこと」になると<br class="sp-br">なぜか難しい理由。</h2>
     <div class="lp-media">
@@ -83,7 +83,7 @@
 </section>
 
 <!-- 06 セッションの流れ STEP1〜4 -->
-<section class="lp-section lp-section--soft lp-section--bg lp-section--bg-texture" style="--lp-bg:url({{LP_IMG}}/bg-orange-tile.webp)">
+<section class="lp-section lp-section--soft lp-section--bg lp-section--bg-texture" id="flow" style="--lp-bg:url({{LP_IMG}}/bg-orange-tile.webp)">
   <div class="lp-inner lp-reveal">
     <h2 class="lp-h2">「家族の役割<br class="sp-br"> 紐解きコーチング」の流れ</h2>
     <figure class="lp-visual"><img src="{{LP_IMG}}/sec-06.webp" width="1536" height="1024" alt="オンラインでコーチングを受けている様子" loading="lazy"></figure>
@@ -137,7 +137,7 @@
 </section>
 
 <!-- 07 90分後に手に入るもの -->
-<section class="lp-section lp-section--white">
+<section class="lp-section lp-section--white" id="result">
   <div class="lp-inner lp-inner--narrow lp-reveal">
     <h2 class="lp-h2">そして、90分後にあなたが手にいれるもの</h2>
     <figure class="lp-visual"><img src="{{LP_IMG}}/sec-07.webp" width="1536" height="1024" alt="ノートに整理した内容を書き留める女性" loading="lazy"></figure>
@@ -165,7 +165,7 @@
 </section>
 
 <!-- 09 お客様の声 -->
-<section class="lp-section lp-section--soft lp-section--bg lp-section--bg-texture" style="--lp-bg:url({{LP_IMG}}/bg-orange-tile.webp)">
+<section class="lp-section lp-section--soft lp-section--bg lp-section--bg-texture" id="voice" style="--lp-bg:url({{LP_IMG}}/bg-orange-tile.webp)">
   <div class="lp-inner lp-reveal">
     <h2 class="lp-h2">実際に、整理した方から、<br>こんなお声を<br class="sp-br">いただいています。</h2>
     <p class="lp-lead">家族のこと、人間関係、自信のなさ。<br>悩みの形は違っても、自分では見えにくかったつながりが整理されることで、<strong>少しずつ現実が動き始める</strong>方がいます。</p>
@@ -235,7 +235,7 @@
 </section>
 
 <!-- 10 プロフィール -->
-<section class="lp-section lp-section--white lp-section--bg lp-section--bg-texture" style="--lp-bg:url({{LP_IMG}}/bg-beige-tile.webp)">
+<section class="lp-section lp-section--white lp-section--bg lp-section--bg-texture" id="profile" style="--lp-bg:url({{LP_IMG}}/bg-beige-tile.webp)">
   <div class="lp-inner lp-reveal">
     <h2 class="lp-h2">なぜ、あまみ悠は<br>「家族の役割<br class="sp-br"> 紐解きコーチング」を<br class="sp-br">行っているのか</h2>
     <div class="lp-profile">
@@ -302,7 +302,7 @@
     <h2 class="lp-h2">開催概要</h2>
     <div class="lp-overview__img">
       <picture>
-        <source media="(max-width: 767px)" srcset="{{LP_IMG}}/overview.webp">
+        <source media="(max-width: 767px)" srcset="{{LP_IMG}}/overview.webp" width="988" height="1592">
         <img src="{{LP_IMG}}/woman1.webp" width="1448" height="1086" alt="家族の役割 紐解きコーチング 概要" loading="lazy">
       </picture>
     </div>
@@ -333,7 +333,7 @@
 </section>
 
 <!-- 14 よくあるご質問 -->
-<section class="lp-section lp-section--white lp-section--bg lp-section--bg-texture" style="--lp-bg:url({{LP_IMG}}/bg-beige-tile.webp)">
+<section class="lp-section lp-section--white lp-section--bg lp-section--bg-texture" id="faq" style="--lp-bg:url({{LP_IMG}}/bg-beige-tile.webp)">
   <div class="lp-inner lp-inner--narrow lp-reveal">
     <h2 class="lp-h2">よくあるご質問</h2>
     <figure class="lp-visual"><img src="{{LP_IMG}}/sec-14.webp" width="1536" height="1024" alt="スマートフォンを手に質問を考える女性" loading="lazy"></figure>
@@ -388,8 +388,34 @@
   <p class="lp-footer__copy">&copy; あまみ悠 家族連鎖クリア＆ライフコーチ</p>
 </footer>
 <div class="lp-sticky">
-  <a class="lp-btn" href="{{CTA_URL}}">▶ 今の悩みの根っこがわかるコーチングを受けてみる<span class="lp-btn__sub">90分・5,500円（税込）・毎月5名様・枠が埋まり次第終了</span></a>
+  <a class="lp-btn" href="{{CTA_URL}}">▶ 今の悩みの根っこがわかる<br class="sp-br">コーチングを受けてみる</a>
 </div>
+
+<!-- 上へ戻る矢印（スクロールすると右下に表示） -->
+<button class="lp-totop" type="button" aria-label="ページの先頭へ戻る">
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/></svg>
+</button>
+
+<!-- ハンバーガーメニュー（右上に常時表示） -->
+<button class="lp-menu__toggle" type="button" aria-label="目次を開く" aria-expanded="false" aria-controls="lp-menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="lp-menu" id="lp-menu" aria-label="ページ内目次" hidden>
+  <div class="lp-menu__inner">
+    <p class="lp-menu__title">目次</p>
+    <ul class="lp-menu__list">
+      <li><a href="#check">こんなこと、ないでしょうか</a></li>
+      <li><a href="#flow">コーチングの流れ</a></li>
+      <li><a href="#result">90分後に手に入るもの</a></li>
+      <li><a href="#voice">お客様の声</a></li>
+      <li><a href="#profile">プロフィール</a></li>
+      <li><a href="#overview">開催概要・参加費</a></li>
+      <li><a href="#faq">よくあるご質問</a></li>
+    </ul>
+    <a class="lp-btn lp-menu__cta" href="{{CTA_URL}}">▶ 今の悩みを一緒に整理する</a>
+    <button class="lp-menu__close" type="button">閉じる</button>
+  </div>
+</nav>
 
 <!-- 17 構造化データ（検索エンジン向け・画面には表示されません） -->
 <!-- LPのURL（スラッグ family-role-coaching）を変更した場合は serviceUrl も合わせてください -->
