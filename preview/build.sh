@@ -23,7 +23,7 @@ cat <<'HEAD'
 <body>
 <main id="amami-lp">
 HEAD
-for f in wordpress/blocks/*.html; do
+for f in wordpress/blocks/[0-9]*.html; do
   echo "<!-- ===== $(basename "$f") ===== -->"
   sed -e 's|{{LP_IMG}}|../wordpress/the-thor-child/assets/lp/img|g' -e 's|{{CTA_URL}}|https://1lejend.com/stepmail/kd.php?no=fqHSUws|g' "$f"
   echo

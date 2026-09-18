@@ -16,15 +16,13 @@
     reveals.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  // スマホ用の追従CTA: FVを過ぎたら表示、最後のCTAが見えたら隠す
+  // 追従CTA: 1つ目のCTA（本文内）が画面の上に消えたら表示し、以降は最後まで表示する
   var sticky = root.querySelector('.lp-sticky');
-  var fv = root.querySelector('.lp-fv');
-  var lastCta = root.querySelector('.lp-closing .lp-cta');
-  if (sticky && fv) {
+  var firstCta = root.querySelector('.lp-cta');
+  if (sticky && firstCta) {
     var onScroll = function () {
-      var pastFv = fv.getBoundingClientRect().bottom < 0;
-      var lastVisible = lastCta ? lastCta.getBoundingClientRect().top < window.innerHeight : false;
-      sticky.classList.toggle('is-visible', pastFv && !lastVisible);
+      var passed = firstCta.getBoundingClientRect().bottom < 0;
+      sticky.classList.toggle('is-visible', passed);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();

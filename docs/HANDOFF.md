@@ -70,6 +70,7 @@ preview/index.html          WordPress なしのプレビュー。GitHub Pages: h
 - H2: ピンク→水色グラデーションの角丸枠、左上に薄いオレンジのぼかし円＋細い輪（枠内に収める）、右下にローズの輪。飾りは文字の後ろ。
 - H3: 左ローズ縦線＋下に水色の短いライン。
 - 強調: `.lp-mk`（蛍光マーカー、表示時に左から引かれる）/ `<strong>`（ローズ太字）/ `.lp-big` / `.lp-or`（オレンジ）。
+- CTA: 本文内は02の1つだけ。追従CTA（`.lp-sticky`）は02のCTAが画面外に消えたら表示し、PC・スマホとも最後まで表示（フッターに下余白120px）。
 - アニメーション: セクションのフェードイン、STEP・声カードの時間差表示、CTAの光の流れ。`prefers-reduced-motion` で停止。
 - スマホ: 見出しは文節折り返し（`word-break: auto-phrase`）、`<br class="sp-br">`（スマホのみ改行）/`<br class="pc-br">`（PCのみ改行）で調整済み。ボタンは横幅いっぱい。開催概要の表は縦積み。
 
@@ -78,6 +79,9 @@ preview/index.html          WordPress なしのプレビュー。GitHub Pages: h
 - LP ページ作成済み（下書き）。テンプレート「LP（ヘッダー・フッターなし）」選択、スラッグ設定済み。
 - メディアに画像一式（19枚＋bg 3枚）アップロード済み。同名の古い画像が残っている（-1 付きが新しい）。
 - UpdraftPlus でバックアップ取得済み（2026-09-17 10:30）。プラグイン: Yoast SEO, Wordfence, UpdraftPlus, wpForo, Duplicate Post ほか。
+
+## 8b. クライアント初回フィードバック（2026-09-18）
+`docs/client-feedback.md` 参照。CTAは「本文内1つ＋画面下の追従CTA」構成に変更済み。Broken Link Checker の27件は `{{LP_IMG}}` プレースホルダー起因（除外リスト設定で解消）。
 
 ## 9. 未完了・次にやること
 1. 最新 zip の置き換えと `ALL.html` の貼り直しが済んでいるか確認（テクスチャ背景 10/14 追加が最後の変更）。
