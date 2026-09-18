@@ -657,7 +657,20 @@
   font-size: .98rem;
 }
 #amami-lp .lp-menu__list a::before { content: "▸"; color: var(--lp-rose); margin-right: 8px; }
-#amami-lp .lp-menu__cta { display: block; min-width: 0; width: 100%; margin-top: 22px; padding: 13px 14px; font-size: .98rem; }
+#amami-lp .lp-menu__price {
+  margin: 22px 0 12px;
+  padding: 14px 16px;
+  background: var(--lp-white);
+  border: 1px solid rgba(184, 100, 108, .25);
+  border-radius: 12px;
+  text-align: center;
+  line-height: 1.5;
+}
+#amami-lp .lp-menu__price-was { display: block; font-size: .8rem; color: var(--lp-ink-soft); text-decoration: line-through; text-decoration-color: rgba(184,100,108,.6); }
+#amami-lp .lp-menu__price-now { display: block; font-family: var(--lp-serif); font-size: 1.7rem; font-weight: 700; color: var(--lp-orange-deep); line-height: 1.3; margin-top: 2px; }
+#amami-lp .lp-menu__price-now small { font-size: .85rem; font-weight: 500; }
+#amami-lp .lp-menu__price-note { display: block; font-size: .78rem; color: var(--lp-rose-deep); margin-top: 2px; }
+#amami-lp .lp-menu__cta { display: block; min-width: 0; width: 100%; margin-top: 0; padding: 13px 14px; font-size: .98rem; }
 #amami-lp .lp-menu__close { display: block; width: 100%; margin-top: 14px; padding: 10px; border: 1px solid rgba(184,100,108,.4); border-radius: 999px; background: transparent; color: var(--lp-rose-deep); cursor: pointer; font-size: .92rem; }
 #amami-lp [id] { scroll-margin-top: 12px; }
 
