@@ -666,7 +666,8 @@
   text-align: center;
   line-height: 1.5;
 }
-#amami-lp .lp-menu__price-was { display: block; font-size: .8rem; color: var(--lp-ink-soft); text-decoration: line-through; text-decoration-color: rgba(184,100,108,.6); }
+#amami-lp .lp-menu__price-was { display: block; font-size: .8rem; color: var(--lp-ink-soft); }
+#amami-lp .lp-menu__price-was s { text-decoration-color: rgba(184,100,108,.7); font-weight: 700; }
 #amami-lp .lp-menu__price-now { display: block; font-family: var(--lp-serif); font-size: 1.7rem; font-weight: 700; color: var(--lp-orange-deep); line-height: 1.3; margin-top: 2px; }
 #amami-lp .lp-menu__price-now small { font-size: .85rem; font-weight: 500; }
 #amami-lp .lp-menu__price-note { display: block; font-size: .78rem; color: var(--lp-rose-deep); margin-top: 2px; }
