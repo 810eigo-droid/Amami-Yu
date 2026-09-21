@@ -189,6 +189,38 @@
 #amami-lp .lp-btn__sub { display: block; font-size: 0.82rem; font-weight: 500; opacity: .92; }
 #amami-lp .lp-btn:focus-visible { outline: 3px solid var(--lp-orange-deep); outline-offset: 3px; }
 #amami-lp .lp-cta__note { margin-top: 12px; font-size: 0.85rem; color: var(--lp-ink-soft); }
+#amami-lp .lp-bank-link {
+  margin: 7px 0 0;
+  font-size: .78rem;
+  line-height: 1.5;
+  text-align: center;
+}
+#amami-lp .lp-bank-link a,
+#amami-lp a.lp-bank-link {
+  color: var(--lp-ink-soft);
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+#amami-lp .lp-bank-link a:hover,
+#amami-lp .lp-bank-link a:focus-visible,
+#amami-lp a.lp-bank-link:hover,
+#amami-lp a.lp-bank-link:focus-visible {
+  color: var(--lp-rose-deep);
+}
+#amami-lp .lp-bank-link--sticky {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 5px auto 0;
+  font-size: .7rem;
+}
+#amami-lp .lp-bank-link--menu {
+  display: block;
+  margin: 7px auto 0;
+  font-size: .76rem;
+  text-align: center;
+}
 @media (max-width: 699px) {
   #amami-lp .lp-btn { min-width: 0; width: 100%; padding: 16px 16px; font-size: 1.02rem; }
 }
