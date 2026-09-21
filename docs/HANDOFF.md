@@ -6,7 +6,7 @@
 - クライアント: あまみ悠様（家族連鎖クリア＆ライフコーチ）。サイト https://amamiyuh.com/（WordPress + THE THOR 2.5.3）
 - 成果物: 固定ページ1枚のLP。URL https://amamiyuh.com/family-role-coaching/（スラッグ `family-role-coaching`）
 - 原稿: `LPコピー（ライフコーチジャパン）.pdf`（17ページ）。文言は原稿どおり、装飾（太字・マーカー）のみ追加。
-- 申込フォーム: https://1lejend.com/stepmail/kd.php?no=fqHSUws　特商法: https://amamiyuh.com/law/　プライバシーポリシー: https://amamiyuh.com/privacy-policy/
+- カード決済CTA: https://square.link/u/2midxl9Q　銀行払い案内: https://1lejend.com/stepmail/kd.php?no=fqHSUws　特商法: https://amamiyuh.com/law/　プライバシーポリシー: https://amamiyuh.com/privacy-policy/
 - クライアント指示: 色はFV画像（ローズ・ベージュ）に合わせる／CTAボタンはオレンジ／お客様の声4件に写真／各セクションに画像／スマホ最優先。ストライプ帯・アニメーション帯は不採用。
 
 ## 2. 設計の要点
@@ -14,7 +14,7 @@
 - 本文は **1セクション=1つのHTML塊**（`wordpress/blocks/01〜17`）。サイトは **旧エディタ（クラシックエディタ）** なので、結合版 `wordpress/blocks/ALL.html` を「コード」タブに一括貼り付けする運用。
 - CSS/JS は子テーマ `assets/lp/lp.css` `lp.js`。すべて `#amami-lp` 配下にスコープ。
 - 画像は `{{LP_IMG}}/name.webp` の書き方で参照し、PHP が実URLへ置換。**メディアライブラリに同名（-1, -2 付きも可）があれば一番新しいものを使い、無ければ子テーマ内 `assets/lp/img` を使う**。子テーマ内画像には `?v=更新日時` が付く。
-- CTA URL は `functions-lp.php` の定数 `AMAMI_LP_CTA_URL` で一括管理（`{{CTA_URL}}` を置換）。
+- カード決済CTA URL は `functions-lp.php` の定数 `AMAMI_LP_CTA_URL`（`{{CTA_URL}}`）、銀行払い案内URLは `AMAMI_LP_BANK_URL`（`{{BANK_URL}}`）で一括管理。
 - SEO: Yoast SEO が有効なので title/description/OGP は Yoast に任せる（テンプレートのフォールバックは SEO プラグイン検出時にオフ）。構造化データ（Service / FAQPage）は `17-jsonld.html`。h1 は FV に1つだけ。
 
 ## 3. THE THOR で判明した相性問題と対策（すべて実装済み）
