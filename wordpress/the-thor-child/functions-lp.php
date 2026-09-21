@@ -168,9 +168,14 @@ function amami_lp_trim_head() {
 }
 add_action( 'wp', 'amami_lp_trim_head' );
 
-/** 申込フォームのURL。ここを書き換えると全CTAボタンのリンク先が一括で変わります。 */
+/** カード決済用CTAのURL。ここを書き換えると全CTAボタンのリンク先が一括で変わります。 */
 if ( ! defined( 'AMAMI_LP_CTA_URL' ) ) {
-	define( 'AMAMI_LP_CTA_URL', 'https://1lejend.com/stepmail/kd.php?no=fqHSUws' );
+	define( 'AMAMI_LP_CTA_URL', 'https://square.link/u/2midxl9Q' );
+}
+
+/** 銀行払いの案内フォームURL。 */
+if ( ! defined( 'AMAMI_LP_BANK_URL' ) ) {
+	define( 'AMAMI_LP_BANK_URL', 'https://1lejend.com/stepmail/kd.php?no=fqHSUws' );
 }
 
 /**
@@ -231,7 +236,8 @@ add_action( 'delete_attachment', 'amami_lp_clear_img_cache' );
 /**
  * HTMLブロック内のトークンを実URLに置換する。
  *  {{LP_IMG}}/name.webp → 画像URL（メディアの最新版を優先、なければ子テーマ内）
- *  {{CTA_URL}}          → 申込フォームURL（AMAMI_LP_CTA_URL）
+ *  {{CTA_URL}}          → カード決済URL（AMAMI_LP_CTA_URL）
+ *  {{BANK_URL}}         → 銀行払い案内URL（AMAMI_LP_BANK_URL）
  */
 function amami_lp_replace_placeholders( $content ) {
 	if ( ! amami_lp_is_lp() ) {
@@ -242,6 +248,10 @@ function amami_lp_replace_placeholders( $content ) {
 		function ( $m ) { return amami_lp_img_url( $m[1] ); },
 		$content
 	);
-	return str_replace( '{{CTA_URL}}', AMAMI_LP_CTA_URL, $content );
+	return str_replace(
+		array( '{{CTA_URL}}', '{{BANK_URL}}' ),
+		array( AMAMI_LP_CTA_URL, AMAMI_LP_BANK_URL ),
+		$content
+	);
 }
 add_filter( 'the_content', 'amami_lp_replace_placeholders', 5 );
