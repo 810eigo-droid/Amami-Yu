@@ -43,8 +43,8 @@ preview/
    require_once get_stylesheet_directory() . '/functions-lp.php';
    ```
 3. `zip` を作り直すときは `dist/` を参照。
-4. 申込フォームのURLは `functions-lp.php` の `AMAMI_LP_CTA_URL` に設定済み（https://1lejend.com/stepmail/kd.php?no=fqHSUws）。
-   変更するときはここを書き換えると全CTAボタンのリンク先が一括で変わる。
+4. カード決済CTAは `functions-lp.php` の `AMAMI_LP_CTA_URL` に設定済み（https://square.link/u/2midxl9Q）。
+   銀行払いの案内リンクは `AMAMI_LP_BANK_URL`（https://1lejend.com/stepmail/kd.php?no=fqHSUws）で一括管理する。
 
 ### 2. 固定ページを作る
 1. 「固定ページ > 新規追加」。タイトルは
