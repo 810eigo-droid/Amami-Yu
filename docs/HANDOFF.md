@@ -60,7 +60,7 @@ preview/index.html          WordPress なしのプレビュー。GitHub Pages: h
 | fv1-pc.webp / fv1-sp.webp | FV（PC/スマホ、文字入り・支給） |
 | fv2-pc.webp | 文字なし集合写真（クロージング前）。声の写真の切り出し元にも使った |
 | woman1.webp / overview.webp | 開催概要（PC/スマホ・支給） |
-| profile.webp | プロフィール（支給、1200px に縮小） |
+| profile-bright.webp | プロフィール（右上の銀色点・右下の影を除去した修正版。LPで使用） |
 | sec-03,04,05,06,07,08,11,12,14.webp | セクション画像（生成、1536×1024）。04・11 は正方形にトリミング表示 |
 | voice-1〜4.webp | お客様の声（クライアント作成の正方形 480×480）。E様/Y様/M様/I様 |
 | bg-orange-tile / bg-pink-tile / bg-beige-tile.webp（03,06,09,11 / 05,08,13 / 10,14） | 漆喰テクスチャ背景。上下鏡面で継ぎ足したタイル（1600×約1790）を幅100%・縦リピートで敷き、拡大による粗を防ぐ。白のかぶせ 40%（ベージュ 60%）。元画像 bg-*.webp はメディアと images/ に保存 |
