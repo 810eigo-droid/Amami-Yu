@@ -134,7 +134,7 @@
   <tr><th>トップ画像</th><td>fv1-pc.webp（PC用）、fv1-sp.webp（スマホ用）</td></tr>
   <tr><th>開催概要の画像</th><td>woman1.webp（PC用）、overview.webp（スマホ用）</td></tr>
   <tr><th>クロージングの画像</th><td>fv2-pc.webp</td></tr>
-  <tr><th>セクションの背景（壁紙）</th><td>bg-pink-tile.webp（05・08・13）、bg-orange-tile.webp（03・06・09・11）、bg-beige-tile.webp（10・14）。上下鏡面で継ぎ足した特殊な形式のため、差し替えは制作担当にご依頼ください（元画像 1920×1080 をお送りいただければ加工します）</td></tr>
+  <tr><th>セクションの背景（壁紙）</th><td>bg-pink-tile.webp（05・08・13）、bg-orange-tile.webp（03・06・09・11）、bg-beige-tile.webp（10・14）。上下鏡面で継ぎ足した特殊な形式のため、通常の差し替え対象外です</td></tr>
 </table>
 <div class="step"><div class="n">1</div><div class="b">新しい画像を、上の表の名前で保存します。拡張子は <b>.webp のまま</b>にしてください（例：voice-2.webp）。<br>お手元の画像が JPG や PNG の場合は、名前を変えるだけでは webp になりません。「webp 変換」と検索して出てくる無料の変換サイトで webp にしてから、名前を付けてください。</div></div>
 <div class="step"><div class="n">2</div><div class="b">左メニュー <b>メディア &gt; 新規追加</b> で、その画像をアップロードします。</div></div>
@@ -155,7 +155,7 @@
 &lt;img src="<span class="hl">https://amamiyuh.com/wp-content/uploads/2026/09/new-photo.jpg</span>" width="1536" height="1024" alt="…" loading="lazy"&gt;</div>
 <div class="step"><div class="n">5</div><div class="b">同じタグの <b>alt="…"</b> には、画像の内容を短い日本語で書きます（例：alt="ノートに書き込む女性"）。</div></div>
 <div class="step"><div class="n">6</div><div class="b">「更新」を押して、ページで確認します。</div></div>
-<div class="note"><b>トップ画像（FV）と開催概要の画像</b>は、PC用とスマホ用で2枚1組です。差し替えるときは2枚ともご用意ください。文字入りのトップ画像の作り直しは制作担当にご依頼ください。</div>
+<div class="note"><b>トップ画像（FV）と開催概要の画像</b>は、PC用とスマホ用で2枚1組です。差し替えるときは2枚ともご用意ください。</div>
 
 <h2>4. お客様の声を追加・変更する</h2>
 <p>コード欄で「09 お客様の声」を検索すると、4件が同じ形で並んでいます。1件分は次の形です。</p>
@@ -186,7 +186,7 @@
 <div class="step"><div class="n">3</div><div class="b"><span class="kbd">Ctrl</span>＋<span class="kbd">F</span> で「AMAMI_LP_CTA_URL」（申込ボタン）または「AMAMI_LP_BANK_URL」（銀行払いリンク）を探し、URLの部分だけを書き換えて「ファイルを更新」を押します。</div></div>
 <div class="code">define( 'AMAMI_LP_CTA_URL', '<span class="hl">https://square.link/u/2midxl9Q</span>' );
 define( 'AMAMI_LP_BANK_URL', '<span class="hl">https://1lejend.com/stepmail/kd.php?no=fqHSUws</span>' );</div>
-<div class="warn"><b>ご注意</b>　このファイルはURL以外を触ると画面が真っ白になることがあります。不安な場合は制作担当にご依頼ください（1分で対応できます）。</div>
+<div class="warn"><b>ご注意</b>　このファイルはURL以外を触ると画面が真っ白になることがあります。不安な場合は触らないでください。</div>
 <h3>料金・所要時間・募集人数</h3>
 <p>「13 開催概要」の中にあります。「2. 文章を変更する」と同じ手順で、「55,000円」「5,500円」「90分程度」「毎月5名様まで」などを検索して書き換えてください。ボタン下の「毎月5名様・枠が埋まり次第 受付終了します。」は3か所（02・07・13）とフッター上の追従ボタンにあるので、検索で全部を確認してください。</p>
 
@@ -214,8 +214,6 @@ define( 'AMAMI_LP_BANK_URL', '<span class="hl">https://1lejend.com/stepmail/kd.p
 <div class="step"><div class="n">1</div><div class="b"><b>外観 &gt; カスタマイズ &gt; TOPページ[THE] &gt; メインビジュアル設定</b> を開きます。</div></div>
 <div class="step"><div class="n">2</div><div class="b">「静止画時の設定」の <b>「画像を変更」</b> から新しい画像を選び、上部の「公開」を押します。</div></div>
 <div class="note"><b>画像の条件</b>　JPG、横 1920〜2400px の横長（例 1920×1080）、1MB以下。<b>横1280px未満の画像や webp は表示されないことがあります。</b>ファイル名は半角英数字にしてください。スマホでは画像の中央部分が表示されるので、大事な要素は中央に寄せた画像が向いています。</div>
-<div class="note"><b>反映されないとき</b>　Ctrl+F5 で強制再読み込みしてください。それでも変わらない場合は制作担当にご連絡ください。</div>
-<p class="footer-note">ご不明な点や、大きな変更（セクションの追加、トップ画像の作り直し、デザイン変更）は制作担当までご連絡ください。</p>
 
 </body>
 </html>
