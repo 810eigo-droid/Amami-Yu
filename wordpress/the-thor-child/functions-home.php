@@ -11,22 +11,36 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-/** カスタマイザーに「スマホ用メインビジュアル画像」を追加 */
+/**
+ * カスタマイザーに「スマホ用メインビジュアル画像」を追加。
+ * THE THOR の「TOPページ[THE] > メインビジュアル設定」（fit_home_mainimg_section）の中、
+ * 「静止画時の設定」の直後に置く。THE THOR のセクションが無い環境では独自セクションに置く。
+ */
 function amami_home_customize_register( $wp_customize ) {
-	$wp_customize->add_section( 'amami_home_mainimg', array(
-		'title'       => 'メインビジュアル（スマホ用画像）',
-		'priority'    => 1,
-		'description' => 'トップページのメインビジュアルを、スマホで見たときだけ別の画像にします。空欄のときは「TOPページ[THE]」で設定したPC用画像をそのまま使います。縦長（例 1080×1350）のJPGがおすすめです。',
-	) );
+	$section  = 'fit_home_mainimg_section';
+	$priority = 10;
+	if ( ! $wp_customize->get_section( $section ) ) {
+		$section = 'amami_home_mainimg';
+		$wp_customize->add_section( $section, array(
+			'title'    => 'メインビジュアル（スマホ用画像）',
+			'priority' => 1,
+		) );
+	} else {
+		$still = $wp_customize->get_control( 'fit_homeMainimg_stillImg' );
+		if ( $still ) {
+			$priority = (int) $still->priority + 1;
+		}
+	}
 	$wp_customize->add_setting( 'amami_home_mainimg_sp', array(
 		'type'              => 'theme_mod',
 		'sanitize_callback' => 'esc_url_raw',
 		'transport'         => 'refresh',
 	) );
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'amami_home_mainimg_sp', array(
-		'label'       => 'スマホ用メインビジュアル画像',
-		'section'     => 'amami_home_mainimg',
-		'description' => 'スマホの高さは「TOPページ[THE] > メインビジュアル設定 > 高さ(スマホ)」で調整できます（縦長画像なら 400〜520 程度）。',
+		'label'       => '静止画時の設定（スマホ用画像）',
+		'section'     => $section,
+		'priority'    => $priority,
+		'description' => '■スマホで見たときだけ使う画像を登録（空欄ならPC用画像をそのまま使用）。縦長（例 1080×1350）のJPGがおすすめ。高さは下の「高さ(スマホ)」で調整。',
 	) ) );
 }
 add_action( 'customize_register', 'amami_home_customize_register' );
