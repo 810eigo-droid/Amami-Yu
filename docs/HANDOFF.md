@@ -30,6 +30,8 @@
 - THE THOR は静止画モードで `1280x720` の縮小版を `<img class="still__img">` に出し、PCは高さ793px（`fit_homeMainimg_heightPc`）に object-fit: cover で引き伸ばす → ぼやける。SPの高さは220px（`fit_homeMainimg_heightSp`）。
 - 子テーマ `functions-home.php`: (1) トップページでメインビジュアル画像（`fit_homeMainimg_stillImg` のURL→ID）の要求が幅1000px以上なら `full` を返す。(2) カスタマイザーに theme_mod `amami_home_mainimg_sp`（THE THOR の `fit_home_mainimg_section` 内、stillImg の直後。セクションが無ければ独自セクション）を追加。`wp_is_mobile()` ならその full を返し、保険として wp_head に `@media(max-width:767px){.still .still__img{content:url(...)}}` を出力。
 - 元画像が 1280×720 未満や webp だと THE THOR 側で表示に失敗しやすい。PC用は横1920以上のJPGを推奨。
+- **スマホ用画像のカスタマイザー項目は、ユーザー環境で表示を確認できなかった（2026-09-22）。** コードは残しているが未検証扱い。クライアントには「トップ画像が鮮明になった」ことのみ伝える方針。マニュアルからはスマホ用の記述を外した。
+- マニュアルは `manual/index.html` として GitHub Pages で公開（https://810eigo-droid.github.io/Amami-Yu/manual/）。印刷ボタン付き。PDF は `docs/LP編集マニュアル.pdf`。
 
 ## 4. リポジトリ構成
 ```

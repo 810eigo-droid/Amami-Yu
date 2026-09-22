@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>LP編集マニュアル</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600&display=swap">
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Noto Sans JP", "IPAPGothic", "IPAGothic", sans-serif; color: #3b3235; font-size: 10.5pt; line-height: 1.8; margin: 0; }
+  h1 { font-family: "Noto Serif JP", "IPAPGothic", serif; font-size: 22pt; color: #9a4f57; margin: 0 0 4mm; line-height: 1.4; }
+  h2 { font-family: "Noto Serif JP", "IPAPGothic", serif; font-size: 15pt; color: #9a4f57; margin: 10mm 0 3mm; padding: 2.5mm 4mm; background: linear-gradient(115deg, #fdf1f3, #f8e0e4 60%, #e8f3f7); border-radius: 3mm; page-break-after: avoid; }
+  h3 { font-size: 12pt; color: #9a4f57; margin: 6mm 0 2mm; padding-left: 3mm; border-left: 3px solid #b8646c; page-break-after: avoid; }
+  p { margin: 0 0 2.5mm; }
+  ol, ul { margin: 0 0 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1.5mm; }
+  .cover { text-align: center; padding: 30mm 0 0; page-break-after: always; }
+  .cover .sub { color: #6b5f62; font-size: 12pt; margin-top: 2mm; }
+  .cover .box { margin: 18mm auto 0; max-width: 130mm; border: 1px solid #e9cfd3; border-radius: 4mm; padding: 6mm 8mm; text-align: left; background: #fdf9f5; }
+  .cover .box p { margin: 0 0 1.5mm; }
+  .note { background: #fdf9f5; border: 1px solid #e9cfd3; border-radius: 3mm; padding: 3mm 4mm; margin: 3mm 0; }
+  .warn { background: #fff4e8; border: 1px solid #f0c6a0; border-radius: 3mm; padding: 3mm 4mm; margin: 3mm 0; }
+  .warn b, .note b { color: #9a4f57; }
+  code, .code { font-family: "Noto Sans JP", "IPAGothic", monospace; }
+  .code { display: block; background: #f5ece4; border-radius: 2.5mm; padding: 3mm 4mm; margin: 2mm 0 3mm; font-size: 9.5pt; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+  .code .hl { background: #ffe08a; padding: 0 1px; }
+  .code .dim { color: #8a7f82; }
+  .step { display: flex; gap: 4mm; margin: 0 0 3mm; page-break-inside: avoid; }
+  .step .n { flex: 0 0 8mm; height: 8mm; border-radius: 50%; background: #b8646c; color: #fff; font-weight: 700; text-align: center; line-height: 8mm; }
+  .step .b { flex: 1; }
+  table { border-collapse: collapse; width: 100%; margin: 2mm 0 4mm; font-size: 9.5pt; page-break-inside: avoid; }
+  th, td { border: 1px solid #e9cfd3; padding: 2mm 3mm; text-align: left; vertical-align: top; }
+  th { background: #fdf1f3; color: #9a4f57; width: 32%; }
+  .toc { columns: 1; }
+  .toc li { margin-bottom: 1mm; }
+  .footer-note { color: #6b5f62; font-size: 9pt; margin-top: 8mm; }
+  .kbd { display: inline-block; border: 1px solid #c9b9bc; border-radius: 1.5mm; padding: 0 1.5mm; font-size: 9pt; background: #fff; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>「家族の役割 紐解きコーチング」LP<br>編集マニュアル</h1>
+  <p class="sub">文章・画像・リンクをご自身で変更するための手順書</p>
+  <div class="box">
+    <p><b>対象ページ</b>　固定ページ「今の悩みの根っこがわかる「家族の役割 紐解きコーチング」」</p>
+    <p><b>URL</b>　https://amamiyuh.com/family-role-coaching/</p>
+    <p><b>編集場所</b>　WordPress 管理画面 > 固定ページ > 対象ページ > コード欄</p>
+    <p><b>所要時間の目安</b>　文章の修正 5分／画像の差し替え 3分（同名アップロード）</p>
+  </div>
+  <p class="footer-note">作成日：2026年9月17日　　このマニュアルは、LPの作りが変わらない限りそのままお使いいただけます。</p>
+</div>
+
+<h2>目次</h2>
+<ol class="toc">
+  <li>LPの仕組みを知る（最初に1回だけお読みください）</li>
+  <li>文章を変更する</li>
+  <li>画像を差し替える（方法A：同名で上げ直す／方法B：URLを書き換える）</li>
+  <li>お客様の声を追加・変更する</li>
+  <li>申込フォームのURL・料金・人数を変更する</li>
+  <li>変更前後の確認と、元に戻す方法</li>
+  <li>やってはいけないこと</li>
+  <li>トップページのメインビジュアル（トップ画像）を変える</li>
+</ol>
+
+<h2>1. LPの仕組みを知る</h2>
+<p>このLPは、固定ページ1枚の「コード欄」に、セクションごとのHTMLが上から順に入っています。デザイン（色・余白・見出しの飾り・ボタンの形）はテーマ側のファイルで管理しているので、<b>コード欄では「文章」と「画像のURL」だけを触れば十分</b>です。</p>
+<p>コード欄の中は、次のような「セクションの見出しコメント」で区切られています。</p>
+<div class="code">&lt;!-- 03 ミニ講座を見て感じたこと --&gt;
+&lt;section class="lp-section lp-section--soft"&gt;
+  ...
+&lt;/section&gt;
+
+&lt;!-- 04 学んでも「自分のこと」になると難しい理由 --&gt;
+...</div>
+<table>
+  <tr><th>番号</th><td>セクションの内容</td></tr>
+  <tr><th>01</th><td>ファーストビュー（トップ画像）</td></tr>
+  <tr><th>02</th><td>「私の場合は、どうなんだろう？」＋最初の申込ボタン</td></tr>
+  <tr><th>03〜05</th><td>共感・問題提起・必要なのは知識ではない</td></tr>
+  <tr><th>06</th><td>セッションの流れ STEP1〜4</td></tr>
+  <tr><th>07</th><td>90分後に手に入るもの＋申込ボタン</td></tr>
+  <tr><th>08</th><td>自分を整理することは、人を支援する力にもつながる</td></tr>
+  <tr><th>09</th><td>お客様の声（4件）</td></tr>
+  <tr><th>10</th><td>プロフィール</td></tr>
+  <tr><th>11〜12</th><td>この時間ではしないこと／安心してご参加いただくために</td></tr>
+  <tr><th>13</th><td>開催概要（所要時間・方法・参加費・募集人数）＋申込ボタン</td></tr>
+  <tr><th>14</th><td>よくあるご質問</td></tr>
+  <tr><th>15</th><td>クロージング＋最後の申込ボタン</td></tr>
+  <tr><th>16〜17</th><td>フッター（特商法・プライバシーポリシー）、検索エンジン向けデータ</td></tr>
+</table>
+<div class="note"><b>HTMLの読み方（これだけ覚えれば大丈夫です）</b><br>
+「&lt;p&gt;」と「&lt;/p&gt;」のように、山カッコで囲まれた部分が「タグ」です。タグは<b>触らず</b>、タグとタグの<b>あいだにある日本語だけ</b>を書き換えます。<br>
+・&lt;strong&gt;〜&lt;/strong&gt;　＝ 太字（ローズ色）<br>
+・&lt;span class="lp-mk"&gt;〜&lt;/span&gt;　＝ 蛍光マーカー<br>
+・&lt;br&gt;　＝ 改行　／　&lt;br class="sp-br"&gt;　＝ スマホだけ改行　／　&lt;br class="pc-br"&gt;　＝ PCだけ改行</div>
+
+<h2>2. 文章を変更する</h2>
+<div class="step"><div class="n">1</div><div class="b">管理画面の左メニュー <b>固定ページ &gt; 固定ページ一覧</b> から、LPのページ名をクリックして開きます。</div></div>
+<div class="step"><div class="n">2</div><div class="b">本文の入力欄（コード欄）をクリックし、キーボードの <span class="kbd">Ctrl</span>＋<span class="kbd">F</span>（Macは <span class="kbd">⌘</span>＋<span class="kbd">F</span>）で、変えたい文章の一部を検索します。<br>例：「毎月5名様」「55,000円」「E様」など、その文章にしか出てこない言葉で探すと早く見つかります。</div></div>
+<div class="step"><div class="n">3</div><div class="b">見つかった日本語の部分だけを書き換えます。前後の「&lt;p&gt;」「&lt;/p&gt;」「&lt;strong&gt;」などのタグは消さないでください。</div></div>
+<div class="code"><span class="dim">変更前</span>
+&lt;p&gt;募集人数は&lt;span class="lp-or"&gt;<span class="hl">毎月5名様まで</span>&lt;/span&gt;&lt;/p&gt;
+
+<span class="dim">変更後（例：3名にする）</span>
+&lt;p&gt;募集人数は&lt;span class="lp-or"&gt;<span class="hl">毎月3名様まで</span>&lt;/span&gt;&lt;/p&gt;</div>
+<div class="step"><div class="n">4</div><div class="b">右上の青い <b>「更新」</b> ボタンを押します。</div></div>
+<div class="step"><div class="n">5</div><div class="b">「固定ページを表示」でページを開き、変更が反映されているか確認します。スマホでも一度ご確認ください（ブラウザの幅を狭くしても確認できます）。</div></div>
+<h3>強調（太字・マーカー）を付けたい／外したいとき</h3>
+<p>太字にしたい部分を &lt;strong&gt; と &lt;/strong&gt; で囲みます。マーカーは &lt;span class="lp-mk"&gt; と &lt;/span&gt; で囲みます。外すときは、その囲みのタグだけを消します（中の文章は残します）。</p>
+<div class="code">&lt;p&gt;学んでも学んでも、<span class="hl">&lt;strong&gt;</span>自信が持てない。<span class="hl">&lt;/strong&gt;</span>&lt;/p&gt;</div>
+<h3>スマホの改行位置を変えたいとき</h3>
+<p>スマホで区切りたい位置に <b>&lt;br class="sp-br"&gt;</b> を入れます。PCではこの改行は無視されるので、PCの見え方は変わりません。</p>
+
+<h2>3. 画像を差し替える</h2>
+<h3>推奨サイズ</h3>
+<table>
+  <tr><th>セクションの画像（03〜14）</th><td>横長 3:2、幅 1536px 以上（例 1536×1024）。枠に合わせて自動で切り抜かれるので、縦横比が多少違っても崩れません。<br>04と11は正方形に切り抜かれるため、人物を画面の中央に置いた画像を選んでください。</td></tr>
+  <tr><th>お客様の声の写真</th><td>正方形（例 480×480）。丸くくり抜いて表示されます。</td></tr>
+  <tr><th>トップ画像（FV）</th><td>PC用 1672×941、スマホ用 1006×1564。文字入り画像はデザイン担当にご依頼ください。</td></tr>
+  <tr><th>ファイル形式</th><td>JPG・PNG・WebP のいずれか。1枚 300KB 以下が目安です。</td></tr>
+</table>
+<h3>方法A：同じ名前でメディアに上げ直す（いちばん簡単・おすすめ）</h3>
+<p>LPの画像には決まった名前が付いています。<b>同じ名前の画像を「メディア」にアップロードするだけ</b>で、LPは自動的に一番新しい画像を表示します。コード欄を触る必要はありません。</p>
+<table>
+  <tr><th>差し替えたい場所</th><td>ファイル名</td></tr>
+  <tr><th>各セクションの写真</th><td>sec-03.webp、sec-04.webp、sec-05.webp、sec-06.webp、sec-07.webp、sec-08.webp、sec-11.webp、sec-12.webp、sec-14.webp（番号はセクション番号）</td></tr>
+  <tr><th>お客様の声の写真（4件）</th><td>voice-1.webp（E様）、voice-2.webp（Y様）、voice-3.webp（M様）、voice-4.webp（I様）</td></tr>
+  <tr><th>プロフィール写真</th><td>profile.webp</td></tr>
+  <tr><th>トップ画像</th><td>fv1-pc.webp（PC用）、fv1-sp.webp（スマホ用）</td></tr>
+  <tr><th>開催概要の画像</th><td>woman1.webp（PC用）、overview.webp（スマホ用）</td></tr>
+  <tr><th>クロージングの画像</th><td>fv2-pc.webp</td></tr>
+  <tr><th>セクションの背景（壁紙）</th><td>bg-pink-tile.webp（05・08・13）、bg-orange-tile.webp（03・06・09・11）、bg-beige-tile.webp（10・14）。上下鏡面で継ぎ足した特殊な形式のため、差し替えは制作担当にご依頼ください（元画像 1920×1080 をお送りいただければ加工します）</td></tr>
+</table>
+<div class="step"><div class="n">1</div><div class="b">新しい画像を、上の表の名前で保存します。拡張子は <b>.webp のまま</b>にしてください（例：voice-2.webp）。<br>お手元の画像が JPG や PNG の場合は、名前を変えるだけでは webp になりません。「webp 変換」と検索して出てくる無料の変換サイトで webp にしてから、名前を付けてください。</div></div>
+<div class="step"><div class="n">2</div><div class="b">左メニュー <b>メディア &gt; 新規追加</b> で、その画像をアップロードします。</div></div>
+<div class="step"><div class="n">3</div><div class="b">アップロード後、ファイル名が「voice-2-1.webp」のように <b>「-1」「-2」が付いても大丈夫</b>です。LPは同じ名前の中で一番新しいものを自動で選びます。</div></div>
+<div class="step"><div class="n">4</div><div class="b">LPのページを開いて確認します。前の画像が見えるときは、<span class="kbd">Ctrl</span>＋<span class="kbd">F5</span>（Macは <span class="kbd">⌘</span>＋<span class="kbd">Shift</span>＋<span class="kbd">R</span>）で強制再読み込みしてください。</div></div>
+<div class="note"><b>元に戻したいとき</b>　メディアで新しくアップロードした画像を削除すると、その前の画像に自動で戻ります。<br><b>古い画像の整理</b>　同じ名前の古い画像はメディアに残しておいても、削除しても、LPの表示には影響しません（常に一番新しいものを使うため）。</div>
+
+<h3>方法B：別の名前の画像に差し替える（コード欄でURLを書き換える）</h3>
+<p>名前を揃えられない場合や、方法Aでうまくいかない場合はこちらです。</p>
+<div class="step"><div class="n">1</div><div class="b">左メニュー <b>メディア &gt; 新規追加</b> で、新しい画像をアップロードします（JPG・PNG のままで構いません）。</div></div>
+<div class="step"><div class="n">2</div><div class="b">アップロード後、その画像をクリックして開き、右側の <b>「ファイルのURL」</b> の横にある「URLをクリップボードにコピー」を押します。</div></div>
+<div class="step"><div class="n">3</div><div class="b">LPの編集画面を開き、コード欄で差し替えたい画像の名前を検索します（例：<b>sec-05.webp</b>）。</div></div>
+<div class="step"><div class="n">4</div><div class="b"><b>src="…"</b> の中身を、コピーしたURLに丸ごと置き換えます。前後の引用符（"）は残してください。</div></div>
+<div class="code"><span class="dim">変更前</span>
+&lt;img src="<span class="hl">{{LP_IMG}}/sec-05.webp</span>" width="1536" height="1024" alt="…" loading="lazy"&gt;
+
+<span class="dim">変更後（メディアにアップロードした画像のURLに）</span>
+&lt;img src="<span class="hl">https://amamiyuh.com/wp-content/uploads/2026/09/new-photo.jpg</span>" width="1536" height="1024" alt="…" loading="lazy"&gt;</div>
+<div class="step"><div class="n">5</div><div class="b">同じタグの <b>alt="…"</b> には、画像の内容を短い日本語で書きます（例：alt="ノートに書き込む女性"）。</div></div>
+<div class="step"><div class="n">6</div><div class="b">「更新」を押して、ページで確認します。</div></div>
+<div class="note"><b>トップ画像（FV）と開催概要の画像</b>は、PC用とスマホ用で2枚1組です。差し替えるときは2枚ともご用意ください。文字入りのトップ画像の作り直しは制作担当にご依頼ください。</div>
+
+<h2>4. お客様の声を追加・変更する</h2>
+<p>コード欄で「09 お客様の声」を検索すると、4件が同じ形で並んでいます。1件分は次の形です。</p>
+<div class="code">&lt;article class="lp-review lp-reveal"&gt;
+  &lt;div class="lp-review__head"&gt;
+    &lt;div class="lp-review__photo"&gt;&lt;img src="{{LP_IMG}}/<span class="hl">voice-1.webp</span>" width="480" height="480" alt="E様のイメージ" loading="lazy"&gt;&lt;/div&gt;
+    &lt;div&gt;
+      &lt;h3 class="lp-review__title"&gt;<span class="hl">「もう、人に合わせ続けなくていいと思えました」</span>&lt;/h3&gt;
+      &lt;p class="lp-review__meta"&gt;<span class="hl">E様・40代／主婦・カウンセラー</span>&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="lp-review__body"&gt;
+    &lt;p&gt;<span class="hl">本文1段落目</span>&lt;/p&gt;
+    &lt;p&gt;<span class="hl">本文2段落目</span>&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</div>
+<ul>
+  <li><b>変更する</b>：黄色の部分（タイトル・お名前と属性・本文）だけを書き換えます。写真は「3. 方法A」のとおり voice-1〜4.webp の名前でメディアに上げ直せば変わります。段落を増やすときは &lt;p&gt;〜&lt;/p&gt; を1組追加します。</li>
+  <li><b>追加する</b>：&lt;article ...&gt; から &lt;/article&gt; までをコピーして、4件目の &lt;/article&gt; の直後に貼り、中身を書き換えます。</li>
+  <li><b>削除する</b>：その1件の &lt;article ...&gt; から &lt;/article&gt; までを削除します。</li>
+</ul>
+
+<h2>5. 申込フォームのURL・料金・人数を変更する</h2>
+<h3>申込フォームのURL（ボタン5か所すべてに反映）</h3>
+<p>ボタンのリンク先は1か所で管理しています。コード欄ではなく、テーマのファイルを開きます。</p>
+<div class="step"><div class="n">1</div><div class="b">左メニュー <b>外観 &gt; テーマファイルエディター</b> を開きます（「編集するテーマ」が <b>THE THOR CHILD</b> になっていることを確認）。</div></div>
+<div class="step"><div class="n">2</div><div class="b">右側のファイル一覧から <b>functions-lp.php</b> をクリックします。</div></div>
+<div class="step"><div class="n">3</div><div class="b"><span class="kbd">Ctrl</span>＋<span class="kbd">F</span> で「AMAMI_LP_CTA_URL」を探し、URLの部分だけを書き換えて「ファイルを更新」を押します。</div></div>
+<div class="code">define( 'AMAMI_LP_CTA_URL', '<span class="hl">https://1lejend.com/stepmail/kd.php?no=fqHSUws</span>' );</div>
+<div class="warn"><b>ご注意</b>　このファイルはURL以外を触ると画面が真っ白になることがあります。不安な場合は制作担当にご依頼ください（1分で対応できます）。</div>
+<h3>料金・所要時間・募集人数</h3>
+<p>「13 開催概要」の中にあります。「2. 文章を変更する」と同じ手順で、「55,000円」「5,500円」「90分程度」「毎月5名様まで」などを検索して書き換えてください。ボタン下の「毎月5名様・枠が埋まり次第 受付終了します。」は3か所（02・07・13）とフッター上の追従ボタンにあるので、検索で全部を確認してください。</p>
+
+<h2>6. 変更前後の確認と、元に戻す方法</h2>
+<ul>
+  <li>「更新」の前に、コード欄の内容を <span class="kbd">Ctrl</span>＋<span class="kbd">A</span> → <span class="kbd">Ctrl</span>＋<span class="kbd">C</span> でコピーし、メモ帳などに貼って保存しておくと安心です。</li>
+  <li>更新後に表示が崩れたら、編集画面を下にスクロールした <b>「リビジョン」</b> 欄から、ひとつ前の日時を選んで「このリビジョンを復元」を押すと元に戻ります。</li>
+  <li>UpdraftPlus のバックアップが定期的に取られています。大きな変更の前は「UpdraftPlus &gt; 今すぐバックアップ」を1回押しておくとさらに安全です。</li>
+  <li>スマホでの見え方は必ず確認してください。PCブラウザの幅を狭めるか、実際のスマホで開きます。</li>
+</ul>
+
+<h2>7. やってはいけないこと</h2>
+<div class="warn">
+<ul style="margin:0">
+  <li><b>タグ（&lt; &gt; で囲まれた部分）を消さない。</b>特に &lt;/section&gt; や &lt;/div&gt; が1つ欠けると、その下のデザインが全部崩れます。</li>
+  <li><b>「ビジュアル」タブを使わない。</b>このページでは表示されないようにしてありますが、もし表示された場合も押さないでください。デザインが自動で書き換えられます。</li>
+  <li><b>テーマを切り替えない。</b>「外観 &gt; テーマ」で THE THOR CHILD 以外を有効化すると、LPだけでなくサイト全体の設定が変わります。</li>
+  <li><b>ページ属性の「テンプレート」を変えない。</b>「LP（ヘッダー・フッターなし）」のままにしてください。</li>
+  <li><b>{{LP_IMG}} や {{CTA_URL}} という文字を消さない。</b>表示のときに自動でURLに置き換わる印です。</li>
+</ul>
+</div>
+
+<h2>8. トップページのメインビジュアル（トップ画像）を変える</h2>
+<p>LPではなく、サイトのトップページ（amamiyuh.com）の一番上の大きな画像です。子テーマの機能で、<b>PC用とスマホ用を別々に</b>設定できるようにしてあります。</p>
+<h3>PC用画像</h3>
+<div class="step"><div class="n">1</div><div class="b"><b>外観 &gt; カスタマイズ &gt; TOPページ[THE] &gt; メインビジュアル設定</b> を開きます。</div></div>
+<div class="step"><div class="n">2</div><div class="b">「静止画時の設定」の <b>「画像を変更」</b> から新しい画像を選び、上部の「公開」を押します。</div></div>
+<div class="note"><b>画像の条件</b>　JPG、横 1920〜2400px の横長（例 1920×1080）、1MB以下。<b>横1280px未満の画像や webp は表示されないことがあります。</b>ファイル名は半角英数字にしてください。</div>
+<h3>スマホ用画像</h3>
+<div class="step"><div class="n">1</div><div class="b"><b>外観 <b>外観 &gt; カスタマイズ &gt; メインビジュアル（スマホ用画像）</b> を開きます（一覧の一番上にあります）。gt; カスタマイズ <b>外観 &gt; カスタマイズ &gt; メインビジュアル（スマホ用画像）</b> を開きます（一覧の一番上にあります）。gt; TOPページ[THE] <b>外観 &gt; カスタマイズ &gt; メインビジュアル（スマホ用画像）</b> を開きます（一覧の一番上にあります）。gt; メインビジュアル設定</b> を開きます。「静止画時の設定」のすぐ下に <b>「静止画時の設定（スマホ用画像）」</b> があります。</div></div>
+<div class="step"><div class="n">2</div><div class="b">「静止画時の設定（スマホ用画像）」で縦長の画像（例 1080×1350、JPG）を選び、「公開」を押します。空欄に戻せばPC用画像がスマホでも使われます。</div></div>
+<div class="step"><div class="n">3</div><div class="b">スマホでの画像の高さは <b>TOPページ[THE] &gt; メインビジュアル設定 &gt; 高さ（スマホ）</b> の数値で変えられます。縦長画像なら 400〜520 くらいが目安です。</div></div>
+<div class="note"><b>反映されないとき</b>　スマホで Ctrl+F5 に相当する再読み込み（ブラウザのキャッシュ削除）を行ってください。それでも変わらない場合は制作担当にご連絡ください。</div>
+
+<p class="footer-note">ご不明な点や、大きな変更（セクションの追加、トップ画像の作り直し、デザイン変更）は制作担当までご連絡ください。</p>
+
+</body>
+</html>
