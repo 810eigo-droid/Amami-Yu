@@ -55,3 +55,6 @@ add_action( 'after_switch_theme', 'the_thor_child_copy_parent_customizer' );
 
 /** LP（家族の役割 紐解きコーチング）用の設定 */
 require_once get_stylesheet_directory() . '/functions-lp.php';
+
+/** トップページのメインビジュアル（画質改善・スマホ用画像）*/
+require_once get_stylesheet_directory() . '/functions-home.php';

@@ -26,9 +26,14 @@
 | 画像遅延読み込み（layzr）が `<img src>` を濃いグレーのダミーに差し替え、JSが無いので戻らない（真っ黒画面の原因） | `the_content` 最終段で `data-layzr` を `src` に戻す |
 | 旧エディタの wpautop / ビジュアルタブが HTML を壊す | LP表示時は wpautop 等を外す。LPページ編集時はビジュアルタブを無効化（`user_can_richedit`） |
 
+## 3b. トップページのメインビジュアル（2026-09-22 追加）
+- THE THOR は静止画モードで `1280x720` の縮小版を `<img class="still__img">` に出し、PCは高さ793px（`fit_homeMainimg_heightPc`）に object-fit: cover で引き伸ばす → ぼやける。SPの高さは220px（`fit_homeMainimg_heightSp`）。
+- 子テーマ `functions-home.php`: (1) トップページでメインビジュアル画像（`fit_homeMainimg_stillImg` のURL→ID）の要求が幅1000px以上なら `full` を返す。(2) カスタマイザーに theme_mod `amami_home_mainimg_sp`（セクション「メインビジュアル（スマホ用画像）」）を追加。`wp_is_mobile()` ならその full を返し、保険として wp_head に `@media(max-width:767px){.still .still__img{content:url(...)}}` を出力。
+- 元画像が 1280×720 未満や webp だと THE THOR 側で表示に失敗しやすい。PC用は横1920以上のJPGを推奨。
+
 ## 4. リポジトリ構成
 ```
-wordpress/the-thor-child/   子テーマ一式（style.css, style-user.css, functions.php, functions-lp.php, page-lp.php, assets/lp/）
+wordpress/the-thor-child/   子テーマ一式（style.css, style-user.css, functions.php, functions-lp.php, functions-home.php, page-lp.php, assets/lp/）
 wordpress/blocks/           セクションHTML 01〜17 と結合版 ALL.html
 dist/the-thor-child-lp.zip  子テーマzip（「外観 > テーマ > テーマのアップロード」→「置き換え」で更新）
 dist/lp-images.zip          画像一式（メディアへ一括アップロード用）
