@@ -22,8 +22,9 @@ function amami_home_customize_register( $wp_customize ) {
 	if ( ! $wp_customize->get_section( $section ) ) {
 		$section = 'amami_home_mainimg';
 		$wp_customize->add_section( $section, array(
-			'title'    => 'メインビジュアル（スマホ用画像）',
-			'priority' => 1,
+			'title'       => 'メインビジュアル（スマホ用画像）',
+			'priority'    => 1,
+			'description' => 'トップページのメインビジュアルを、スマホで見たときだけ別の画像にします。',
 		) );
 	} else {
 		$still = $wp_customize->get_control( 'fit_homeMainimg_stillImg' );
@@ -43,7 +44,8 @@ function amami_home_customize_register( $wp_customize ) {
 		'description' => '■スマホで見たときだけ使う画像を登録（空欄ならPC用画像をそのまま使用）。縦長（例 1080×1350）のJPGがおすすめ。高さは下の「高さ(スマホ)」で調整。',
 	) ) );
 }
-add_action( 'customize_register', 'amami_home_customize_register' );
+// THE THOR がセクションを登録し終えたあとに動かす（優先度 999）
+add_action( 'customize_register', 'amami_home_customize_register', 999 );
 
 /** メインビジュアルの画像ID（PC用・スマホ用）を取得。1リクエスト内でキャッシュ */
 function amami_home_mainimg_ids() {
