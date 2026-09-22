@@ -35,9 +35,12 @@
   .toc li { margin-bottom: 1mm; }
   .footer-note { color: #6b5f62; font-size: 9pt; margin-top: 8mm; }
   .kbd { display: inline-block; border: 1px solid #c9b9bc; border-radius: 1.5mm; padding: 0 1.5mm; font-size: 9pt; background: #fff; }
+  .print-btn { position: fixed; right: 16px; top: 16px; padding: 10px 16px; border: 0; border-radius: 999px; background: #b8646c; color: #fff; font-size: 10.5pt; cursor: pointer; box-shadow: 0 4px 12px rgba(120,80,84,.25); }
+  @media print { .print-btn { display: none; } }
 </style>
 </head>
 <body>
+<button class="print-btn" type="button" onclick="window.print()">印刷 / PDFに保存</button>
 
 <div class="cover">
   <h1>「家族の役割 紐解きコーチング」LP<br>編集マニュアル</h1>
@@ -47,8 +50,9 @@
     <p><b>URL</b>　https://amamiyuh.com/family-role-coaching/</p>
     <p><b>編集場所</b>　WordPress 管理画面 > 固定ページ > 対象ページ > コード欄</p>
     <p><b>所要時間の目安</b>　文章の修正 5分／画像の差し替え 3分（同名アップロード）</p>
+    <p><b>このページを印刷・PDF保存</b>　ブラウザの印刷（Ctrl+P / ⌘+P）で「PDFに保存」を選べます。</p>
   </div>
-  <p class="footer-note">作成日：2026年9月17日　　このマニュアルは、LPの作りが変わらない限りそのままお使いいただけます。</p>
+  <p class="footer-note">作成日：2026年9月17日　更新：2026年9月22日　　このマニュアルは、LPの作りが変わらない限りそのままお使いいただけます。</p>
 </div>
 
 <h2>目次</h2>
@@ -126,7 +130,7 @@
   <tr><th>差し替えたい場所</th><td>ファイル名</td></tr>
   <tr><th>各セクションの写真</th><td>sec-03.webp、sec-04.webp、sec-05.webp、sec-06.webp、sec-07.webp、sec-08.webp、sec-11.webp、sec-12.webp、sec-14.webp（番号はセクション番号）</td></tr>
   <tr><th>お客様の声の写真（4件）</th><td>voice-1.webp（E様）、voice-2.webp（Y様）、voice-3.webp（M様）、voice-4.webp（I様）</td></tr>
-  <tr><th>プロフィール写真</th><td>profile.webp</td></tr>
+  <tr><th>プロフィール写真</th><td>profile-bright.webp</td></tr>
   <tr><th>トップ画像</th><td>fv1-pc.webp（PC用）、fv1-sp.webp（スマホ用）</td></tr>
   <tr><th>開催概要の画像</th><td>woman1.webp（PC用）、overview.webp（スマホ用）</td></tr>
   <tr><th>クロージングの画像</th><td>fv2-pc.webp</td></tr>
@@ -175,12 +179,13 @@
 </ul>
 
 <h2>5. 申込フォームのURL・料金・人数を変更する</h2>
-<h3>申込フォームのURL（ボタン5か所すべてに反映）</h3>
-<p>ボタンのリンク先は1か所で管理しています。コード欄ではなく、テーマのファイルを開きます。</p>
+<h3>申込ボタンのリンク先（Square決済）と「銀行払いの方はこちら」のリンク先</h3>
+<p>オレンジの申込ボタン（本文・画面下・メニュー）は Square 決済へ、その下の小さな「銀行払いの方はこちら」は申込フォームへ移動します。どちらも1か所で管理しています。コード欄ではなく、テーマのファイルを開きます。</p>
 <div class="step"><div class="n">1</div><div class="b">左メニュー <b>外観 &gt; テーマファイルエディター</b> を開きます（「編集するテーマ」が <b>THE THOR CHILD</b> になっていることを確認）。</div></div>
 <div class="step"><div class="n">2</div><div class="b">右側のファイル一覧から <b>functions-lp.php</b> をクリックします。</div></div>
-<div class="step"><div class="n">3</div><div class="b"><span class="kbd">Ctrl</span>＋<span class="kbd">F</span> で「AMAMI_LP_CTA_URL」を探し、URLの部分だけを書き換えて「ファイルを更新」を押します。</div></div>
-<div class="code">define( 'AMAMI_LP_CTA_URL', '<span class="hl">https://1lejend.com/stepmail/kd.php?no=fqHSUws</span>' );</div>
+<div class="step"><div class="n">3</div><div class="b"><span class="kbd">Ctrl</span>＋<span class="kbd">F</span> で「AMAMI_LP_CTA_URL」（申込ボタン）または「AMAMI_LP_BANK_URL」（銀行払いリンク）を探し、URLの部分だけを書き換えて「ファイルを更新」を押します。</div></div>
+<div class="code">define( 'AMAMI_LP_CTA_URL', '<span class="hl">https://square.link/u/2midxl9Q</span>' );
+define( 'AMAMI_LP_BANK_URL', '<span class="hl">https://1lejend.com/stepmail/kd.php?no=fqHSUws</span>' );</div>
 <div class="warn"><b>ご注意</b>　このファイルはURL以外を触ると画面が真っ白になることがあります。不安な場合は制作担当にご依頼ください（1分で対応できます）。</div>
 <h3>料金・所要時間・募集人数</h3>
 <p>「13 開催概要」の中にあります。「2. 文章を変更する」と同じ手順で、「55,000円」「5,500円」「90分程度」「毎月5名様まで」などを検索して書き換えてください。ボタン下の「毎月5名様・枠が埋まり次第 受付終了します。」は3か所（02・07・13）とフッター上の追従ボタンにあるので、検索で全部を確認してください。</p>
@@ -205,17 +210,11 @@
 </div>
 
 <h2>8. トップページのメインビジュアル（トップ画像）を変える</h2>
-<p>LPではなく、サイトのトップページ（amamiyuh.com）の一番上の大きな画像です。子テーマの機能で、<b>PC用とスマホ用を別々に</b>設定できるようにしてあります。</p>
-<h3>PC用画像</h3>
+<p>LPではなく、サイトのトップページ（amamiyuh.com）の一番上の大きな画像です。子テーマの機能で、アップロードした画像が縮小されずそのまま使われるようになっています（以前より鮮明に表示されます）。</p>
 <div class="step"><div class="n">1</div><div class="b"><b>外観 &gt; カスタマイズ &gt; TOPページ[THE] &gt; メインビジュアル設定</b> を開きます。</div></div>
 <div class="step"><div class="n">2</div><div class="b">「静止画時の設定」の <b>「画像を変更」</b> から新しい画像を選び、上部の「公開」を押します。</div></div>
-<div class="note"><b>画像の条件</b>　JPG、横 1920〜2400px の横長（例 1920×1080）、1MB以下。<b>横1280px未満の画像や webp は表示されないことがあります。</b>ファイル名は半角英数字にしてください。</div>
-<h3>スマホ用画像</h3>
-<div class="step"><div class="n">1</div><div class="b"><b>外観 <b>外観 &gt; カスタマイズ &gt; メインビジュアル（スマホ用画像）</b> を開きます（一覧の一番上にあります）。gt; カスタマイズ <b>外観 &gt; カスタマイズ &gt; メインビジュアル（スマホ用画像）</b> を開きます（一覧の一番上にあります）。gt; TOPページ[THE] <b>外観 &gt; カスタマイズ &gt; メインビジュアル（スマホ用画像）</b> を開きます（一覧の一番上にあります）。gt; メインビジュアル設定</b> を開きます。「静止画時の設定」のすぐ下に <b>「静止画時の設定（スマホ用画像）」</b> があります。</div></div>
-<div class="step"><div class="n">2</div><div class="b">「静止画時の設定（スマホ用画像）」で縦長の画像（例 1080×1350、JPG）を選び、「公開」を押します。空欄に戻せばPC用画像がスマホでも使われます。</div></div>
-<div class="step"><div class="n">3</div><div class="b">スマホでの画像の高さは <b>TOPページ[THE] &gt; メインビジュアル設定 &gt; 高さ（スマホ）</b> の数値で変えられます。縦長画像なら 400〜520 くらいが目安です。</div></div>
-<div class="note"><b>反映されないとき</b>　スマホで Ctrl+F5 に相当する再読み込み（ブラウザのキャッシュ削除）を行ってください。それでも変わらない場合は制作担当にご連絡ください。</div>
-
+<div class="note"><b>画像の条件</b>　JPG、横 1920〜2400px の横長（例 1920×1080）、1MB以下。<b>横1280px未満の画像や webp は表示されないことがあります。</b>ファイル名は半角英数字にしてください。スマホでは画像の中央部分が表示されるので、大事な要素は中央に寄せた画像が向いています。</div>
+<div class="note"><b>反映されないとき</b>　Ctrl+F5 で強制再読み込みしてください。それでも変わらない場合は制作担当にご連絡ください。</div>
 <p class="footer-note">ご不明な点や、大きな変更（セクションの追加、トップ画像の作り直し、デザイン変更）は制作担当までご連絡ください。</p>
 
 </body>
